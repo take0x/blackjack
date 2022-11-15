@@ -38,6 +38,8 @@ public class BlackjackAuthConfiguration {
     http.authorizeHttpRequests()
         .mvcMatchers("/blackjack/**").authenticated();
     http.logout().logoutSuccessUrl("/");
+    http.csrf().disable();
+    http.headers().frameOptions().disable();
     return http.build();
   }
 

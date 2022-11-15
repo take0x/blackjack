@@ -1,0 +1,5 @@
+CREATE TABLE userData (
+  id IDENTITY,
+  name VARCHAR NOT NULL,
+  coin INT NOT NULL
+);
