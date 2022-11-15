@@ -36,7 +36,7 @@ public class BlackjackAuthConfiguration {
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     http.formLogin();
     http.authorizeHttpRequests()
-        .mvcMatchers("/home").authenticated();
+        .mvcMatchers("/blackjack/**").authenticated();
     http.logout().logoutSuccessUrl("/");
     return http.build();
   }
