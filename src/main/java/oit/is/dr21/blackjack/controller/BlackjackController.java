@@ -23,5 +23,6 @@ public class BlackjackController {
   public String home() {
     return "home.html";
   }
+  
 
 }
