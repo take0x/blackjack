@@ -23,6 +23,10 @@ public class BlackjackController {
   public String home() {
     return "home.html";
   }
-  
+
+  @GetMapping("/game")
+  public String game() {
+    return "game.html";
+  }
 
 }
