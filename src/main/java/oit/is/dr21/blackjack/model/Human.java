@@ -13,7 +13,11 @@ public abstract class Human {
   public Integer calcSum() {
     Integer sum = 0;
     for (int i = 0; i < this.cards.size(); i++) {
-      sum += cards.get(i);
+      if (cards.get(i) > 10) {
+        sum += 10;
+      } else {
+        sum += cards.get(i);
+      }
     }
     return sum;
   }
