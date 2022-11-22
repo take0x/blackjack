@@ -10,7 +10,30 @@
   <h1>Game</h1>
   <h2>Hello!<div sec:authentication="name"></div>
   </h2>
+  <div>
+    <a href="/blackjack/gamestart">ゲームスタート</a>
+  </div>
+  <p>
+  <div th:if="${Dealer}">
+    <h3>Dealer</h3>
+    <div>
+      <span th:each="card:${Dealer.cards}">[[${card}]] </span>
+    </div>
+    <div>
+      合計：[[${Dealer.calcSum()}]]
+    </div>
+  </div>
 
+  <div th:if="${Player}">
+    <h3>Player</h3>
+    <div>
+      <span th:each="card:${Player.cards}">[[${card}]] </span>
+    </div>
+    <div>
+      合計：[[${Player.calcSum()}]]
+    </div>
+  </div>
+  </p>
 </body>
 
 </html>
