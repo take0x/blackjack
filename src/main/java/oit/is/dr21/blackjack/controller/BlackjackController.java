@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 // import org.springframework.web.bind.annotation.RequestParam;
 // import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import oit.is.dr21.blackjack.model.Dealer;
 import oit.is.dr21.blackjack.model.Player;
@@ -21,6 +22,9 @@ import oit.is.dr21.blackjack.model.Player;
 @Controller
 @RequestMapping("/blackjack")
 public class BlackjackController {
+
+  Player player;
+  Dealer dealer;
 
   @GetMapping("/home")
   public String home() {
@@ -34,12 +38,21 @@ public class BlackjackController {
 
   @GetMapping("/gamestart")
   public String gameStart(ModelMap model) {
-    Player player = new Player();
-    Dealer dealer = new Dealer();
+    this.player = new Player();
+    this.dealer = new Dealer();
 
-    model.addAttribute("Player", player);
-    model.addAttribute("Dealer", dealer);
+    model.addAttribute("Player", this.player);
+    model.addAttribute("Dealer", this.dealer);
     return "game.html";
   }
 
+  @GetMapping("/gameplay")
+  public String gameplay(@RequestParam String action, ModelMap model) {
+    if (action.equals("hit")) {
+      this.player.drawCard();
+      model.addAttribute("Player", this.player);
+      model.addAttribute("Dealer", this.dealer);
+    }
+    return "game.html";
+  }
 }
