@@ -50,9 +50,11 @@ public class BlackjackController {
   public String gameplay(@RequestParam String action, ModelMap model) {
     if (action.equals("hit")) {
       this.player.drawCard();
-      model.addAttribute("Player", this.player);
-      model.addAttribute("Dealer", this.dealer);
+    } else if (action.equals("stand")) {
+      this.player.setIsStand(true);
     }
+    model.addAttribute("Player", this.player);
+    model.addAttribute("Dealer", this.dealer);
     return "game.html";
   }
 }
