@@ -61,7 +61,10 @@ public class BlackjackController {
   }
 
   @GetMapping("/gameresult")
-  public String gameResult() {
+  public String gameResult(ModelMap model) {
+    this.dealer.judge(this.player);
+    model.addAttribute("Player", this.player);
+    model.addAttribute("Dealer", this.dealer);
     return "result.html";
   }
 }
