@@ -6,8 +6,8 @@ public abstract class Human {
   ArrayList<Integer> cards = new ArrayList<>();
 
   public Human() {
-    cards.add((int) (Math.random() * 13) + 1);
-    cards.add((int) (Math.random() * 13) + 1);
+    drawCard();
+    drawCard();
   }
 
   public Integer calcSum() {
@@ -20,6 +20,10 @@ public abstract class Human {
       }
     }
     return sum;
+  }
+
+  public void drawCard() {
+    cards.add((int) (Math.random() * 13) + 1);
   }
 
   public void setCards(ArrayList<Integer> cards) {
