@@ -13,4 +13,21 @@ public class Dealer extends Human {
       super.drawCard();
     }
   }
+
+  public void judge(Player player) {
+    String result = "";
+    int ds = super.calcSum();
+    int ps = player.calcSum();
+    if (ps > 21) {
+      result = "Burst";
+    } else if (ps > ds || ds > 21) {
+      result = "Win";
+    } else if (ps == ds) {
+      result = "Draw";
+    } else {
+      result = "Lose";
+    }
+    player.setResult(result);
+  }
+
 }

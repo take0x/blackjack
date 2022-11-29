@@ -4,18 +4,22 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Player extends Human {
-  boolean isStand = false;
+  String result;
 
   public Player() {
     super();
   }
 
-  public boolean getIsStand() {
-    return isStand;
+  public String getResult() {
+    return result;
   }
 
-  public void setIsStand(boolean isStand) {
-    this.isStand = isStand;
+  public void setResult(String result) {
+    this.result = result;
   }
+
+  
+
+
 
 }
