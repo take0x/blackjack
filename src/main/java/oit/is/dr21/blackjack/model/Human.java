@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public abstract class Human {
   ArrayList<Integer> cards = new ArrayList<>();
+  boolean isStand = false;
 
   public Human() {
     drawCard();
@@ -34,4 +35,11 @@ public abstract class Human {
     return cards;
   }
 
+  public boolean getIsStand() {
+    return isStand;
+  }
+
+  public void setIsStand(boolean isStand) {
+    this.isStand = isStand;
+  }
 }

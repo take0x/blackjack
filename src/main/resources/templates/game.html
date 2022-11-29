@@ -36,6 +36,9 @@
       <a href="/blackjack/gameplay?action=hit">ヒット</a>
       <a href="/blackjack/gameplay?action=stand">スタンド</a>
     </div>
+    <div th:if="${Dealer.isStand}">
+      <a href="/blackjack/gameresult">結果</a>
+    </div>
   </div>
   </p>
 </body>

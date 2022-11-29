@@ -7,4 +7,10 @@ public class Dealer extends Human {
   public Dealer() {
     super();
   }
+
+  public void drawCards() {
+    while (super.calcSum() < 17) {
+      super.drawCard();
+    }
+  }
 }

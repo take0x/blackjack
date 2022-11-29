@@ -47,14 +47,21 @@ public class BlackjackController {
   }
 
   @GetMapping("/gameplay")
-  public String gameplay(@RequestParam String action, ModelMap model) {
+  public String gamePlay(@RequestParam String action, ModelMap model) {
     if (action.equals("hit")) {
       this.player.drawCard();
     } else if (action.equals("stand")) {
       this.player.setIsStand(true);
+      this.dealer.drawCards();
+      this.dealer.setIsStand(true);
     }
     model.addAttribute("Player", this.player);
     model.addAttribute("Dealer", this.dealer);
     return "game.html";
+  }
+
+  @GetMapping("/gameresult")
+  public String gameResult() {
+    return "result.html";
   }
 }
