@@ -19,7 +19,7 @@
       <span th:each="card:${Dealer.cards}">[[${card}]] </span>
     </div>
     <div>
-      合計：[[${Dealer.calcSum()}]]
+      合計：[[${Dealer.sum}]]
     </div>
   </div>
 
@@ -29,7 +29,7 @@
       <span th:each="card:${Player.cards}">[[${card}]] </span>
     </div>
     <div>
-      合計：[[${Player.calcSum()}]] <br>
+      合計：[[${Player.sum}]] <br>
       結果：[[${Player.result}]]
     </div>
 

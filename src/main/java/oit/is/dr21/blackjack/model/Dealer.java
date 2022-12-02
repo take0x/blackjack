@@ -9,20 +9,20 @@ public class Dealer extends Human {
   }
 
   public void drawCards() {
-    while (super.calcSum() < 17) {
+    while (super.getSum() < 17) {
       super.drawCard();
     }
   }
 
   public void judge(Player player) {
     String result = "";
-    int ds = super.calcSum();
-    int ps = player.calcSum();
-    if (ps > 21) {
+    int dealerSum = super.getSum();
+    int playerSum = player.getSum();
+    if (player.sum > 21) {
       result = "Burst";
-    } else if (ps > ds || ds > 21) {
+    } else if (playerSum > dealerSum || dealerSum > 21) {
       result = "Win";
-    } else if (ps == ds) {
+    } else if (playerSum == dealerSum) {
       result = "Draw";
     } else {
       result = "Lose";

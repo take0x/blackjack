@@ -20,7 +20,7 @@
       <span th:each="card:${Dealer.cards}">[[${card}]] </span>
     </div>
     <div>
-      合計：[[${Dealer.calcSum()}]]
+      合計：[[${Dealer.sum}]]
     </div>
   </div>
 
@@ -30,7 +30,7 @@
       <span th:each="card:${Player.cards}">[[${card}]] </span>
     </div>
     <div>
-      合計：[[${Player.calcSum()}]]
+      合計：[[${Player.sum}]]
     </div>
     <div th:if="${!Player.isStand}">
       <a href="/blackjack/gameplay?action=hit">ヒット</a>
