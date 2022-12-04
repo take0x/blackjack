@@ -3,7 +3,7 @@ package oit.is.dr21.blackjack.model;
 import java.util.ArrayList;
 
 public abstract class Human {
-  ArrayList<Integer> cards = new ArrayList<>();
+  ArrayList<Card> cards = new ArrayList<>();
   boolean isStand = false;
   int sum = 0;
 
@@ -12,18 +12,25 @@ public abstract class Human {
     drawCard();
   }
 
+  public void calcSum() {
+    Integer sum = 0;
+    for (Card card : this.cards) {
+      sum += card.getValue();
+    }
+    this.sum = sum;
+  }
+
   public void drawCard() {
-    int card = (int) (Math.random() * 13) + 1;
-    this.sum += card > 10 ? 10 : card;
-    cards.add(card);
+    cards.add(new Card());
+    this.calcSum();
   }
 
-  public void setCards(ArrayList<Integer> cards) {
-    this.cards = cards;
-  }
-
-  public ArrayList<Integer> getCards() {
+  public ArrayList<Card> getCards() {
     return cards;
+  }
+
+  public void setCards(ArrayList<Card> cards) {
+    this.cards = cards;
   }
 
   public boolean getIsStand() {
