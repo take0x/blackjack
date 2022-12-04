@@ -5,26 +5,17 @@ import java.util.ArrayList;
 public abstract class Human {
   ArrayList<Integer> cards = new ArrayList<>();
   boolean isStand = false;
+  int sum = 0;
 
   public Human() {
     drawCard();
     drawCard();
   }
 
-  public Integer calcSum() {
-    Integer sum = 0;
-    for (int i = 0; i < this.cards.size(); i++) {
-      if (cards.get(i) > 10) {
-        sum += 10;
-      } else {
-        sum += cards.get(i);
-      }
-    }
-    return sum;
-  }
-
   public void drawCard() {
-    cards.add((int) (Math.random() * 13) + 1);
+    int card = (int) (Math.random() * 13) + 1;
+    this.sum += card > 10 ? 10 : card;
+    cards.add(card);
   }
 
   public void setCards(ArrayList<Integer> cards) {
@@ -41,5 +32,13 @@ public abstract class Human {
 
   public void setIsStand(boolean isStand) {
     this.isStand = isStand;
+  }
+
+  public int getSum() {
+    return sum;
+  }
+
+  public void setSum(int sum) {
+    this.sum = sum;
   }
 }
