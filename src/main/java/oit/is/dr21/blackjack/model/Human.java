@@ -5,22 +5,24 @@ import java.util.ArrayList;
 public abstract class Human {
   ArrayList<Card> cards = new ArrayList<>();
   boolean isStand = false;
+  int sum = 0;
 
   public Human() {
     drawCard();
     drawCard();
   }
 
-  public Integer calcSum() {
+  public void calcSum() {
     Integer sum = 0;
     for (Card card : this.cards) {
       sum += card.getValue();
     }
-    return sum;
+    this.sum = sum;
   }
 
   public void drawCard() {
     cards.add(new Card());
+    this.calcSum();
   }
 
   public ArrayList<Card> getCards() {
@@ -37,5 +39,13 @@ public abstract class Human {
 
   public void setIsStand(boolean isStand) {
     this.isStand = isStand;
+  }
+
+  public int getSum() {
+    return sum;
+  }
+
+  public void setSum(int sum) {
+    this.sum = sum;
   }
 }

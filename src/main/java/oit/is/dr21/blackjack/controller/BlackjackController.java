@@ -32,7 +32,9 @@ public class BlackjackController {
   }
 
   @GetMapping("/game")
-  public String game() {
+  public String game(ModelMap model) {
+    boolean Start = true;
+    model.addAttribute("Start", Start);
     return "game.html";
   }
 
@@ -40,7 +42,6 @@ public class BlackjackController {
   public String gameStart(ModelMap model) {
     this.player = new Player();
     this.dealer = new Dealer();
-
     model.addAttribute("Player", this.player);
     model.addAttribute("Dealer", this.dealer);
     return "game.html";
