@@ -1,5 +1,7 @@
 package oit.is.dr21.blackjack.controller;
 
+import java.security.Principal;
+
 // import java.security.Principal;
 // import java.util.ArrayList;
 
@@ -36,10 +38,13 @@ public class BlackjackController {
   }
 
   @GetMapping("/game")
-  public String game(ModelMap model) {
+  public String game(Principal prin, ModelMap model) {
     boolean Start = true;
+    Player p = new Player(prin.getName());
+    this.room.addPlayer(p);
     model.addAttribute("Start", Start);
-    model.addAttribute("roomId", this.room.getRoomId());
+    model.addAttribute("room", this.room);
+
     return "game.html";
   }
 
