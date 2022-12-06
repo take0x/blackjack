@@ -11,6 +11,11 @@ public class Room {
   ArrayList<Player> players = new ArrayList<>();
 
   public void addPlayer(Player player) {
+    for (Player p : this.players) {
+      if ((p.getName()).equals(player.getName())) {
+        return;
+      }
+    }
     players.add(player);
   }
 

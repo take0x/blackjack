@@ -5,9 +5,16 @@ import org.springframework.stereotype.Component;
 @Component
 public class Player extends Human {
   String result;
+  String name;
+
 
   public Player() {
     super();
+  }
+
+  public Player(String name) {
+    super();
+    this.name = name;
   }
 
   public String getResult() {
@@ -18,7 +25,15 @@ public class Player extends Human {
     this.result = result;
   }
 
-  
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+
 
 
 
