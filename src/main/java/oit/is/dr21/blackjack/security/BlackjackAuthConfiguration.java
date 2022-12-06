@@ -24,12 +24,27 @@ public class BlackjackAuthConfiguration {
         .password("$2y$10$Iux5hfcJ0mjBA5ahM77iGe35qn456ftNtweJuhu7ZBnC6HEddCxMe")
         .roles("USER")
         .build();
+    UserDetails user2 = users
+        .username("オカドメ")
+        .password("$2y$10$yytrg5Cs.hWXqcqn.LRdZOfaQX908Rmw0yfeQZtTmfMemcm3YYwvi")
+        .roles("USER")
+        .build();
+    UserDetails user3 = users
+        .username("タナカ")
+        .password("$2y$10$h.OrIQmgG2enjbu.zqvM5eHemyGob49tOQf9qMER69WxZ0NoRpfh.")
+        .roles("USER")
+        .build();
+    UserDetails user4 = users
+        .username("ミナミ")
+        .password("$2y$10$B5qS4sm3RDx13Cqq.dVX3.PRSf1IgeLEGb18wvDVhMzX.IMAOPvgy")
+        .roles("USER")
+        .build();
     UserDetails admin = users
         .username("admin")
         .password("$2y$10$Rv3qxlWjPjqCoTJO6gLRxORrlstRFXsS3NiaZmSV0zbJarN6NQjHi")
         .roles("ADMIN")
         .build();
-    return new InMemoryUserDetailsManager(user1, admin);
+    return new InMemoryUserDetailsManager(user1, user2, user3, user4, admin);
   }
 
   @Bean
