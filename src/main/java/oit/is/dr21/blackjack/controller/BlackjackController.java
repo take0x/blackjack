@@ -3,7 +3,7 @@ package oit.is.dr21.blackjack.controller;
 // import java.security.Principal;
 // import java.util.ArrayList;
 
-// import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 // import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import oit.is.dr21.blackjack.model.Dealer;
 import oit.is.dr21.blackjack.model.Player;
+import oit.is.dr21.blackjack.model.Room;
 
 @Controller
 @RequestMapping("/blackjack")
@@ -25,6 +26,9 @@ public class BlackjackController {
 
   Player player;
   Dealer dealer;
+
+  @Autowired
+  Room room;
 
   @GetMapping("/home")
   public String home() {
@@ -35,6 +39,7 @@ public class BlackjackController {
   public String game(ModelMap model) {
     boolean Start = true;
     model.addAttribute("Start", Start);
+    model.addAttribute("roomId", this.room.getRoomId());
     return "game.html";
   }
 
