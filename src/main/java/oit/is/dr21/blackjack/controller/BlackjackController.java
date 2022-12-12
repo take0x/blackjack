@@ -1,8 +1,6 @@
 package oit.is.dr21.blackjack.controller;
 
 import java.security.Principal;
-
-// import java.security.Principal;
 // import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +13,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 // import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 // import org.springframework.web.bind.annotation.RequestParam;
-// import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
+import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import oit.is.dr21.blackjack.model.Dealer;
 import oit.is.dr21.blackjack.model.Player;
 import oit.is.dr21.blackjack.model.Room;
+import oit.is.dr21.blackjack.service.AsyncPlayers;
 
 @Controller
 @RequestMapping("/blackjack")
@@ -31,6 +30,9 @@ public class BlackjackController {
 
   @Autowired
   Room room;
+
+  @Autowired
+  AsyncPlayers reception;
 
   @GetMapping("/home")
   public String home() {
@@ -77,5 +79,12 @@ public class BlackjackController {
     model.addAttribute("Player", this.player);
     model.addAttribute("Dealer", this.dealer);
     return "result.html";
+  }
+
+  @GetMapping("/monitorPlayers")
+  public SseEmitter monitorPlayers() {
+    final SseEmitter sseEmitter = new SseEmitter();
+    this.reception.asyncShowPlayersList(sseEmitter, room);
+    return sseEmitter;
   }
 }

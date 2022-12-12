@@ -4,6 +4,28 @@
 <head>
   <meta charset="utf-8">
   <title>Blackjack Game</title>
+  <script>
+    window.onload = function () {
+      var sse = new EventSource('/blackjack/monitorPlayers');
+      sse.onmessage = function (event) {
+        console.log("sse.onmessage")
+        console.log(event.data);
+        var players = JSON.parse(event.data);//JSONオブジェクトとしてparse
+        var players_list = "<ul>";
+        // DBに残っているフルーツのリストがJSONオブジェクトとして得られるので，htmlを作成し，tbodyの中身毎入れ替える
+        for (var i = 0; i < players.length; i++) {
+          var name = "<li>" + players[i].name + "</li>";
+          players_list += name;
+
+        }
+        players_list += "</ul>";
+        console.log(players_list);
+        var p = document.getElementById("players_list");
+        p.innerHTML = players_list;//idがplayers_listのtbodyのHTMLを差し替える
+
+      }
+    }
+  </script>
 </head>
 
 <body>
@@ -11,7 +33,7 @@
   <h2>Room番号: [[${room.roomId}]]</h2>
   <h2>Hello!<div sec:authentication="name"></div>
   </h2>
-  <div th:if="${room}">
+  <div th:if="${room}" id="players_list">
     <ul>
       <li th:each="player : ${room.players}">[[${player.name}]]</li>
     </ul>

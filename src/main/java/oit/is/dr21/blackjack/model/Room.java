@@ -9,6 +9,7 @@ public class Room {
   int roomId = 21;
   Dealer dealer = new Dealer();
   ArrayList<Player> players = new ArrayList<>();
+  Boolean updated = false;
 
   public void addPlayer(Player player) {
     for (Player p : this.players) {
@@ -17,6 +18,7 @@ public class Room {
       }
     }
     players.add(player);
+    this.updated = true;
   }
 
   public int getRoomId() {
@@ -41,6 +43,14 @@ public class Room {
 
   public void setPlayers(ArrayList<Player> players) {
     this.players = players;
+  }
+
+  public Boolean getUpdated() {
+    return updated;
+  }
+
+  public void setUpdated(Boolean updated) {
+    this.updated = updated;
   }
 
 }
