@@ -20,6 +20,7 @@ import oit.is.dr21.blackjack.model.Dealer;
 import oit.is.dr21.blackjack.model.Player;
 import oit.is.dr21.blackjack.model.Room;
 import oit.is.dr21.blackjack.service.AsyncPlayers;
+import oit.is.dr21.blackjack.service.AsyncRoom;
 
 @Controller
 @RequestMapping("/blackjack")
@@ -32,10 +33,14 @@ public class BlackjackController {
   Room room;
 
   @Autowired
+  AsyncRoom asyncRoom;
+
+  @Autowired
   AsyncPlayers reception;
 
   @GetMapping("/home")
-  public String home() {
+  public String home(ModelMap model) {
+    model.addAttribute("room", this.room);
     return "home.html";
   }
 
@@ -44,6 +49,7 @@ public class BlackjackController {
     boolean Start = true;
     Player p = new Player(prin.getName());
     this.room.addPlayer(p);
+    this.room.setEnableEntry(false);
     model.addAttribute("Start", Start);
     model.addAttribute("room", this.room);
 
@@ -79,6 +85,13 @@ public class BlackjackController {
     model.addAttribute("Player", this.player);
     model.addAttribute("Dealer", this.dealer);
     return "result.html";
+  }
+
+  @GetMapping("/monitorRoom")
+  public SseEmitter monitorRoom() {
+    final SseEmitter sseEmitter = new SseEmitter();
+    this.asyncRoom.asyncEnableEntry(sseEmitter, room);
+    return sseEmitter;
   }
 
   @GetMapping("/monitorPlayers")

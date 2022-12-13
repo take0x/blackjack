@@ -10,6 +10,7 @@ public class Room {
   Dealer dealer = new Dealer();
   ArrayList<Player> players = new ArrayList<>();
   Boolean updated = false;
+  Boolean enableEntry = true;
 
   public void addPlayer(Player player) {
     for (Player p : this.players) {
@@ -51,6 +52,14 @@ public class Room {
 
   public void setUpdated(Boolean updated) {
     this.updated = updated;
+  }
+
+  public Boolean getEnableEntry() {
+    return enableEntry;
+  }
+
+  public void setEnableEntry(Boolean enableEntry) {
+    this.enableEntry = enableEntry;
   }
 
 }

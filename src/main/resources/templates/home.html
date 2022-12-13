@@ -4,13 +4,31 @@
 <head>
   <meta charset="utf-8">
   <title>Blackjack Home</title>
+  <script>
+    window.onload = function () {
+      var sse = new EventSource('/blackjack/monitorRoom');
+      sse.onmessage = function (event) {
+        console.log("sse.onmessage")
+        console.log(event.data);
+        var room = JSON.parse(event.data);//JSONオブジェクトとしてparse
+        var room_link = "";
+        if (room[0].enableEntry) {
+          room_link += "<a href='/blackjack/game'>入室</a>";
+        }
+        console.log(room_link);
+        var r = document.getElementById("room_link");
+        r.innerHTML = room_link;
+
+      }
+    }
+  </script>
 </head>
 
 <body>
   <h1>Home</h1>
   <h3>Hello!<div sec:authentication="name"></div>
   </h3>
-  <div>
+  <div th:if="room.enableEntry" id="room_link">
     <a href="/blackjack/game">入室</a>
   </div>
   <a href="/rule">ルール</a>
