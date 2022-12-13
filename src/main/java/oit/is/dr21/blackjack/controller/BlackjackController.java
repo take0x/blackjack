@@ -10,11 +10,10 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 // import org.springframework.web.bind.annotation.ModelAttribute;
 // import org.springframework.web.bind.annotation.PathVariable;
-// import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-// import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import oit.is.dr21.blackjack.model.Dealer;
 import oit.is.dr21.blackjack.model.Player;
@@ -44,25 +43,38 @@ public class BlackjackController {
     return "home.html";
   }
 
-  @GetMapping("/game")
-  public String game(Principal prin, ModelMap model) {
-    boolean Start = true;
+  @GetMapping("/lobby")
+  public String lobby(Principal prin, ModelMap model) {
     Player p = new Player(prin.getName());
     this.room.addPlayer(p);
-    model.addAttribute("Start", Start);
+    model.addAttribute("coin", 100);
     model.addAttribute("room", this.room);
+    return "lobby.html";
+  }
 
+  @PostMapping("/gamestart")
+  public String gameStart(Principal prin, ModelMap model, @RequestParam int coin) {
+    model.addAttribute("coin", coin);
+    model.addAttribute("room", this.room);
     return "game.html";
   }
 
   @GetMapping("/gamestart")
-  public String gameStart(ModelMap model) {
-    this.player = new Player();
-    this.dealer = new Dealer();
-    model.addAttribute("Player", this.player);
-    model.addAttribute("Dealer", this.dealer);
+  public String game(Principal prin, ModelMap model) {
+    Player p = new Player(prin.getName());
+    this.room.addPlayer(p);
+    model.addAttribute("room", this.room);
     return "game.html";
   }
+
+  // @GetMapping("/gamestart")
+  // public String gameStart(ModelMap model) {
+  // this.player = new Player();
+  // this.dealer = new Dealer();
+  // model.addAttribute("Player", this.player);
+  // model.addAttribute("Dealer", this.dealer);
+  // return "game.html";
+  // }
 
   @GetMapping("/gameplay")
   public String gamePlay(@RequestParam String action, ModelMap model) {
