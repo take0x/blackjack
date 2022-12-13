@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Blackjack Game</title>
+  <title>Blackjack Lobby</title>
   <script>
     window.onload = function () {
       var sse = new EventSource('/blackjack/monitorPlayers');
@@ -30,7 +30,7 @@
 
 <body>
   <h1>Game</h1>
-  <h2>Room番号: [[${room.roomId}]] コイン：[[${coin}]] </h2>
+  <h2>Room番号: [[${room.roomId}]]</h2>
   <h2>Hello!<div sec:authentication="name"></div>
   </h2>
   <div th:if="${room}" id="players_list">
@@ -38,35 +38,15 @@
       <li th:each="player : ${room.players}">[[${player.name}]]</li>
     </ul>
   </div>
-  <div th:if="${Start}">
-    <a href="/blackjack/gamestart">ゲームスタート</a>
-  </div>
   <p>
-  <div th:if="${Dealer}">
-    <h3>Dealer</h3>
-    <div>
-      <span th:each="card:${Dealer.cards}">[[${card}]] </span>
-    </div>
-    <div>
-      合計：[[${Dealer.sum}]]
-    </div>
+  <div>
+    所持コイン数：[[${coin}]] 枚
   </div>
-
-  <div th:if="${Player}">
-    <h3>Player</h3>
-    <div>
-      <span th:each="card:${Player.cards}">[[${card}]] </span>
-    </div>
-    <div>
-      合計：[[${Player.sum}]]
-    </div>
-    <div th:if="${!Player.isStand}">
-      <a href="/blackjack/gameplay?action=hit">ヒット</a>
-      <a href="/blackjack/gameplay?action=stand">スタンド</a>
-    </div>
-    <div th:if="${Dealer.isStand}">
-      <a href="/blackjack/gameresult">結果</a>
-    </div>
+  <div>
+    <form th:action="@{/blackjack/gamestart}" method="post">
+      <input type="number" name="coin" />
+      <input type="submit" value="ゲームスタート">
+    </form>
   </div>
   </p>
 </body>
