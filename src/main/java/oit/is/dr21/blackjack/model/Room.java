@@ -19,7 +19,16 @@ public class Room {
       }
     }
     players.add(player);
+    judgeLimit();
     this.updated = true;
+  }
+
+  public void judgeLimit() {
+    if (players.size() >= 4) {
+      this.enableEntry = false;
+    } else {
+      this.enableEntry = true;
+    }
   }
 
   public int getRoomId() {

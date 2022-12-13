@@ -49,7 +49,6 @@ public class BlackjackController {
     boolean Start = true;
     Player p = new Player(prin.getName());
     this.room.addPlayer(p);
-    this.room.setEnableEntry(false);
     model.addAttribute("Start", Start);
     model.addAttribute("room", this.room);
 
