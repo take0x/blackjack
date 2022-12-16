@@ -10,18 +10,24 @@
       sse.onmessage = function (event) {
         console.log("sse.onmessage")
         console.log(event.data);
-        var players = JSON.parse(event.data);//JSONオブジェクトとしてparse
-        var players_list = "<ul>";
-        // DBに残っているフルーツのリストがJSONオブジェクトとして得られるので，htmlを作成し，tbodyの中身毎入れ替える
+        var players = JSON.parse(event.data);
+        var players_list = "";
         for (var i = 0; i < players.length; i++) {
-          var name = "<li>" + players[i].name + "</li>";
+          players_list += "<div>"
+          var name = "<h3>" + players[i].name + "</h3>";
           players_list += name;
-
+          players_list += "<div>";
+          for (var j = 0; j < players[i].cards.length; j++) {
+            var card = "<span>" + players[i].cards[j].display + " </span>";
+            players_list += card;
+          }
+          players_list += "</div>";
+          players_list += "<div>合計：" + players[i].sum + "</div>";
+          players_list += "</div>";
         }
-        players_list += "</ul>";
         console.log(players_list);
         var p = document.getElementById("players_list");
-        p.innerHTML = players_list;//idがplayers_listのtbodyのHTMLを差し替える
+        p.innerHTML = players_list;
 
       }
     }
@@ -33,41 +39,36 @@
   <h2>Room番号: [[${room.roomId}]] コイン：[[${coin}]] </h2>
   <h2>Hello!<div sec:authentication="name"></div>
   </h2>
-  <div th:if="${room}" id="players_list">
-    <ul>
-      <li th:each="player : ${room.players}">[[${player.name}]]</li>
-    </ul>
-  </div>
-  <div th:if="${Start}">
-    <a href="/blackjack/gamestart">ゲームスタート</a>
-  </div>
-  <p>
-  <div th:if="${Dealer}">
+
+  <p th:if="${room}">
+  <div>
     <h3>Dealer</h3>
     <div>
-      <span th:each="card:${Dealer.cards}">[[${card}]] </span>
+      <span th:each="card:${room.dealer.cards}">[[${card}]] </span>
     </div>
     <div>
-      合計：[[${Dealer.sum}]]
+      合計：[[${room.dealer.sum}]]
     </div>
   </div>
 
-  <div th:if="${Player}">
-    <h3>Player</h3>
-    <div>
-      <span th:each="card:${Player.cards}">[[${card}]] </span>
-    </div>
-    <div>
-      合計：[[${Player.sum}]]
-    </div>
-    <div th:if="${!Player.isStand}">
-      <a href="/blackjack/gameplay?action=hit">ヒット</a>
-      <a href="/blackjack/gameplay?action=stand">スタンド</a>
-    </div>
-    <div th:if="${Dealer.isStand}">
-      <a href="/blackjack/gameresult">結果</a>
+  <div id="players_list">
+    <div th:each="player:${room.players}">
+      <h3>[[${player.name}]]</h3>
+      <div>
+        <span th:each="card:${player.cards}">[[${card}]] </span>
+      </div>
+      <div>
+        合計：[[${player.sum}]]
+      </div>
     </div>
   </div>
+
+  <div>
+    <a href="/blackjack/gameplay?action=hit">ヒット</a>
+    <a href="/blackjack/gameplay?action=stand">スタンド</a>
+  </div>
+
+
   </p>
 </body>
 

@@ -5,6 +5,7 @@ import java.util.Random;
 public class Card {
   private String number;
   private int value;
+  private String display;
 
   private String suite;
   final String SPADE = "♠";
@@ -73,6 +74,7 @@ public class Card {
         this.value = num;
         break;
     }
+    this.display = this.suite + this.number;
   }
 
   /**
@@ -96,6 +98,7 @@ public class Card {
         this.suite = HEART;
         break;
     }
+    this.display = this.suite + this.number;
   }
 
   public String getSuite() {
@@ -120,6 +123,14 @@ public class Card {
 
   public void setValue(int value) {
     this.value = value;
+  }
+
+  public String getDisplay() {
+    return display;
+  }
+
+  public void setDisplay(String display) {
+    this.display = display;
   }
 
   @Override

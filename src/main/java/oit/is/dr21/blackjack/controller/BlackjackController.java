@@ -77,16 +77,21 @@ public class BlackjackController {
   // }
 
   @GetMapping("/gameplay")
-  public String gamePlay(@RequestParam String action, ModelMap model) {
+  public String gamePlay(Principal prin, @RequestParam String action, ModelMap model) {
+    Player player = room.getPlayerByName(prin.getName());
+    // Dealer dealer = room.getDealer();
     if (action.equals("hit")) {
-      this.player.drawCard();
+      player.drawCard();
+      room.setUpdated(true);
     } else if (action.equals("stand")) {
-      this.player.setIsStand(true);
-      this.dealer.drawCards();
-      this.dealer.setIsStand(true);
+      player.setIsStand(true);
+      // dealer.drawCards();
+      // dealer.setIsStand(true);
+      model.addAttribute("room", this.room);
+      return "result.html";
     }
-    model.addAttribute("Player", this.player);
-    model.addAttribute("Dealer", this.dealer);
+    model.addAttribute("room", this.room);
+
     return "game.html";
   }
 
