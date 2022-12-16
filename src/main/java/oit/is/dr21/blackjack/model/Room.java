@@ -23,6 +23,15 @@ public class Room {
     this.updated = true;
   }
 
+  public Player getPlayerByName(String name) {
+    for (Player p : this.players) {
+      if ((p.getName()).equals(name)) {
+        return p;
+      }
+    }
+    return null;
+  }
+
   public void judgeLimit() {
     if (players.size() >= 4) {
       this.enableEntry = false;
