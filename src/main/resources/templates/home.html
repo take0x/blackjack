@@ -13,7 +13,7 @@
         var room = JSON.parse(event.data);//JSONオブジェクトとしてparse
         var room_link = "";
         if (room[0].enableEntry) {
-          room_link += "<a href='/blackjack/game'>入室</a>";
+          room_link += "<a href='/blackjack/lobby'>入室</a>";
         }
         console.log(room_link);
         var r = document.getElementById("room_link");

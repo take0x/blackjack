@@ -56,25 +56,9 @@ public class BlackjackController {
   public String gameStart(Principal prin, ModelMap model, @RequestParam int coin) {
     model.addAttribute("coin", coin);
     model.addAttribute("room", this.room);
+    this.room.setEnableEntry(false);
     return "game.html";
   }
-
-  @GetMapping("/gamestart")
-  public String game(Principal prin, ModelMap model) {
-    Player p = new Player(prin.getName());
-    this.room.addPlayer(p);
-    model.addAttribute("room", this.room);
-    return "game.html";
-  }
-
-  // @GetMapping("/gamestart")
-  // public String gameStart(ModelMap model) {
-  // this.player = new Player();
-  // this.dealer = new Dealer();
-  // model.addAttribute("Player", this.player);
-  // model.addAttribute("Dealer", this.dealer);
-  // return "game.html";
-  // }
 
   @GetMapping("/gameplay")
   public String gamePlay(Principal prin, @RequestParam String action, ModelMap model) {
@@ -96,11 +80,33 @@ public class BlackjackController {
   }
 
   @GetMapping("/gameresult")
-  public String gameResult(ModelMap model) {
-    this.dealer.judge(this.player);
-    model.addAttribute("Player", this.player);
-    model.addAttribute("Dealer", this.dealer);
+  public String gameResult(Principal prin, ModelMap model) {
+    Player player = room.getPlayerByName(prin.getName());
+    player.setIsStand(true);
+    if (this.room.checkAllStanded()) {
+      this.room.judgePlayers();
+      this.room.setEnableEntry(true);
+      this.room.setUpdated(true);
+    }
+    model.addAttribute("room", this.room);
     return "result.html";
+  }
+
+  @GetMapping("/returnlobby")
+  public String returnlobby(Principal prin, ModelMap model) {
+    this.room.removePlayer(prin.getName());
+    Player p = new Player(prin.getName());
+    this.room.addPlayer(p);
+    model.addAttribute("coin", 100);
+    model.addAttribute("room", this.room);
+    return "lobby.html";
+  }
+
+  @GetMapping("/returnhome")
+  public String returnhome(Principal prin, ModelMap model) {
+    this.room.removePlayer(prin.getName());
+    model.addAttribute("room", this.room);
+    return "home.html";
   }
 
   @GetMapping("/monitorRoom")

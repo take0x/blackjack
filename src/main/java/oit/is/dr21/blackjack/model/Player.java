@@ -4,9 +4,8 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Player extends Human {
-  String result;
+  String result = "";
   String name;
-
 
   public Player() {
     super();
@@ -32,9 +31,5 @@ public class Player extends Human {
   public void setName(String name) {
     this.name = name;
   }
-
-
-
-
 
 }
