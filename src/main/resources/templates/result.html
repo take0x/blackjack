@@ -4,6 +4,40 @@
 <head>
   <meta charset="utf-8">
   <title>Blackjack Result</title>
+  <script>
+    window.onload = function () {
+      var sse = new EventSource('/blackjack/monitorPlayers');
+      sse.onmessage = function (event) {
+        console.log("sse.onmessage")
+        console.log(event.data);
+        var players = JSON.parse(event.data);
+        var players_list = "";
+        var all_standed = true;
+        for (var i = 0; i < players.length; i++) {
+          players_list += "<div>"
+          var name = "<h3>" + players[i].name + "</h3>";
+          players_list += name;
+          players_list += "<div>";
+          for (var j = 0; j < players[i].cards.length; j++) {
+            var card = "<span>" + players[i].cards[j].display + " </span>";
+            players_list += card;
+          }
+          players_list += "</div>";
+          players_list += "<div>合計：" + players[i].sum + "<br>結果：" + players[i].result + "</div>";
+          players_list += "</div>";
+          if (!players[i].isStand) {
+            all_standed = false;
+          }
+        }
+        console.log(players_list);
+        var p = document.getElementById("players_list");
+        p.innerHTML = players_list;
+        if (all_standed) {
+          sse.close();
+        }
+      }
+    }
+  </script>
 </head>
 
 <body>
@@ -12,28 +46,34 @@
 
 
 
-  <p>
-  <div th:if="${Dealer}">
+  <p th:if="${room}">
+  <div>
     <h3>Dealer</h3>
     <div>
-      <span th:each="card:${Dealer.cards}">[[${card}]] </span>
+      <span th:each="card:${room.dealer.cards}">[[${card}]] </span>
     </div>
     <div>
-      合計：[[${Dealer.sum}]]
+      合計：[[${room.dealer.sum}]]
     </div>
   </div>
 
-  <div th:if="${Player}">
-    <h3>Player</h3>
-    <div>
-      <span th:each="card:${Player.cards}">[[${card}]] </span>
+  <div id="players_list">
+    <div th:each="player:${room.players}">
+      <h3>[[${player.name}]]</h3>
+      <div>
+        <span th:each="card:${player.cards}">[[${card}]] </span>
+      </div>
+      <div>
+        合計：[[${player.sum}]] <br>
+        結果：[[${player.result}]]
+      </div>
     </div>
-    <div>
-      合計：[[${Player.sum}]] <br>
-      結果：[[${Player.result}]]
-    </div>
-
   </div>
+  </p>
+
+  <p>
+    <a href="/blackjack/returnlobby">再戦</a>
+    <a href="/blackjack/returnhome">退室</a>
   </p>
 </body>
 

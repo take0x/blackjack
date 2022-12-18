@@ -23,10 +23,27 @@ public class Room {
     this.updated = true;
   }
 
+  public void removePlayer(String name) {
+    int removeIndex = -1;
+    if (players.size() != 0) {
+      for (Player p : this.players) {
+        if ((p.getName()).equals(name)) {
+          removeIndex = players.indexOf(p);
+        }
+      }
+      if (removeIndex > -1) {
+        players.remove(removeIndex);
+        this.updated = true;
+      }
+    }
+  }
+
   public Player getPlayerByName(String name) {
-    for (Player p : this.players) {
-      if ((p.getName()).equals(name)) {
-        return p;
+    if (players.size() != 0) {
+      for (Player p : this.players) {
+        if ((p.getName()).equals(name)) {
+          return p;
+        }
       }
     }
     return null;
@@ -37,6 +54,24 @@ public class Room {
       this.enableEntry = false;
     } else {
       this.enableEntry = true;
+    }
+  }
+
+  public Boolean checkAllStanded() {
+    if (players.size() != 0) {
+      for (Player p : this.players) {
+        if (!p.isStand) {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
+
+  public void judgePlayers() {
+    this.dealer.drawCards();
+    for (Player p : this.players) {
+      this.dealer.judge(p);
     }
   }
 
