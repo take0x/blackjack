@@ -6,6 +6,8 @@ import org.springframework.stereotype.Component;
 public class Player extends Human {
   String result = "";
   String name;
+  int coin;
+  int bet;
 
   public Player() {
     super();
@@ -14,6 +16,12 @@ public class Player extends Human {
   public Player(String name) {
     super();
     this.name = name;
+  }
+
+  public int betCoin(int bet) {
+    this.coin -= bet;
+    this.bet = bet;
+    return this.coin;
   }
 
   public String getResult() {
@@ -30,6 +38,22 @@ public class Player extends Human {
 
   public void setName(String name) {
     this.name = name;
+  }
+
+  public int getCoin() {
+    return coin;
+  }
+
+  public void setCoin(int coin) {
+    this.coin = coin;
+  }
+
+  public int getBet() {
+    return bet;
+  }
+
+  public void setBet(int bet) {
+    this.bet = bet;
   }
 
 }

@@ -5,7 +5,7 @@ import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-// import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 // import org.springframework.web.bind.annotation.ModelAttribute;
@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 import oit.is.dr21.blackjack.model.Dealer;
 import oit.is.dr21.blackjack.model.Player;
 import oit.is.dr21.blackjack.model.Room;
+import oit.is.dr21.blackjack.model.UserDataMapper;
 import oit.is.dr21.blackjack.service.AsyncPlayers;
 import oit.is.dr21.blackjack.service.AsyncRoom;
 
@@ -37,6 +38,9 @@ public class BlackjackController {
   @Autowired
   AsyncPlayers reception;
 
+  @Autowired
+  UserDataMapper udMapper;
+
   @GetMapping("/home")
   public String home(ModelMap model) {
     model.addAttribute("room", this.room);
@@ -46,15 +50,20 @@ public class BlackjackController {
   @GetMapping("/lobby")
   public String lobby(Principal prin, ModelMap model) {
     Player p = new Player(prin.getName());
+    p.setCoin(udMapper.selectCoinByName(p.getName()));
     this.room.addPlayer(p);
-    model.addAttribute("coin", 100);
+    model.addAttribute("coin", p.getCoin());
     model.addAttribute("room", this.room);
     return "lobby.html";
   }
 
   @PostMapping("/gamestart")
-  public String gameStart(Principal prin, ModelMap model, @RequestParam int coin) {
-    model.addAttribute("coin", coin);
+  @Transactional
+  public String gameStart(Principal prin, ModelMap model, @RequestParam int bet) {
+    Player player = room.getPlayerByName(prin.getName());
+    int coin = player.betCoin(bet);
+    udMapper.updateCoinByName(player.getName(), coin);
+    model.addAttribute("coin", bet);
     model.addAttribute("room", this.room);
     this.room.setEnableEntry(false);
     return "game.html";
@@ -80,11 +89,15 @@ public class BlackjackController {
   }
 
   @GetMapping("/gameresult")
+  @Transactional
   public String gameResult(Principal prin, ModelMap model) {
     Player player = room.getPlayerByName(prin.getName());
     player.setIsStand(true);
     if (this.room.checkAllStanded()) {
       this.room.judgePlayers();
+      for (Player p : this.room.getPlayers()) {
+        udMapper.updateCoinByName(p.getName(), p.getCoin());
+      }
       this.room.setEnableEntry(true);
       this.room.setUpdated(true);
     }
@@ -96,8 +109,9 @@ public class BlackjackController {
   public String returnlobby(Principal prin, ModelMap model) {
     this.room.removePlayer(prin.getName());
     Player p = new Player(prin.getName());
+    p.setCoin(udMapper.selectCoinByName(p.getName()));
     this.room.addPlayer(p);
-    model.addAttribute("coin", 100);
+    model.addAttribute("coin", p.getCoin());
     model.addAttribute("room", this.room);
     return "lobby.html";
   }
