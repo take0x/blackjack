@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 
 <head>
   <meta charset="utf-8">
@@ -17,6 +17,7 @@
           players_list += "<div>"
           var name = "<h3>" + players[i].name + "</h3>";
           players_list += name;
+          players_list += "<div>所持コイン数：" + players[i].coin + " / BET：" + players[i].bet + "</div>";
           players_list += "<div>";
           for (var j = 0; j < players[i].cards.length; j++) {
             var card = "<span>" + players[i].cards[j].display + " </span>";
@@ -60,6 +61,7 @@
   <div id="players_list">
     <div th:each="player:${room.players}">
       <h3>[[${player.name}]]</h3>
+      <div>所持コイン数：[[${player.coin}]] / BET：[[${player.bet}]]</div>
       <div>
         <span th:each="card:${player.cards}">[[${card}]] </span>
       </div>

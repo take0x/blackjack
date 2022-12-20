@@ -22,8 +22,10 @@ public class Dealer extends Human {
       result = "Burst";
     } else if (playerSum > dealerSum || dealerSum > 21) {
       result = "Win";
+      player.setCoin(player.getCoin() + player.getBet() * 2);
     } else if (playerSum == dealerSum) {
       result = "Draw";
+      player.setCoin(player.getCoin() + player.getBet());
     } else {
       result = "Lose";
     }
