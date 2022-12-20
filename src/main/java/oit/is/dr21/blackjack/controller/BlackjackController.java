@@ -60,6 +60,10 @@ public class BlackjackController {
   @PostMapping("/gamestart")
   @Transactional
   public String gameStart(Principal prin, ModelMap model, @RequestParam int bet) {
+    if (!this.room.getDealerUpdated()) {
+      this.room.setDealer(new Dealer());
+      this.room.setDealerUpdated(true);
+    }
     Player player = room.getPlayerByName(prin.getName());
     int coin = player.betCoin(bet);
     udMapper.updateCoinByName(player.getName(), coin);
@@ -100,6 +104,7 @@ public class BlackjackController {
       }
       this.room.setEnableEntry(true);
       this.room.setUpdated(true);
+      this.room.setDealerUpdated(false);
     }
     model.addAttribute("room", this.room);
     return "result.html";
