@@ -7,10 +7,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class Room {
   int roomId = 21;
-  Dealer dealer = new Dealer();
+  Dealer dealer;
   ArrayList<Player> players = new ArrayList<>();
   Boolean updated = false;
   Boolean enableEntry = true;
+  Boolean dealerUpdated = false;
 
   public void addPlayer(Player player) {
     for (Player p : this.players) {
@@ -113,6 +114,14 @@ public class Room {
 
   public void setEnableEntry(Boolean enableEntry) {
     this.enableEntry = enableEntry;
+  }
+
+  public Boolean getDealerUpdated() {
+    return dealerUpdated;
+  }
+
+  public void setDealerUpdated(Boolean dealerUpdated) {
+    this.dealerUpdated = dealerUpdated;
   }
 
 }
