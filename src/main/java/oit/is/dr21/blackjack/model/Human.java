@@ -8,8 +8,6 @@ public abstract class Human {
   int sum = 0;
 
   public Human() {
-    drawCard();
-    drawCard();
   }
 
   public void calcSum() {

@@ -10,12 +10,15 @@ public class Player extends Human {
   int bet;
 
   public Player() {
-    super();
   }
 
   public Player(String name) {
-    super();
     this.name = name;
+  }
+
+  public void drawFirst() {
+    super.drawCard();
+    super.drawCard();
   }
 
   public int betCoin(int bet) {

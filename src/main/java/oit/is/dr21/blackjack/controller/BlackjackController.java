@@ -67,9 +67,11 @@ public class BlackjackController {
     Player player = room.getPlayerByName(prin.getName());
     int coin = player.betCoin(bet);
     udMapper.updateCoinByName(player.getName(), coin);
+    player.drawFirst();
     model.addAttribute("coin", bet);
     model.addAttribute("room", this.room);
     this.room.setEnableEntry(false);
+    this.room.setUpdated(true);
     return "game.html";
   }
 

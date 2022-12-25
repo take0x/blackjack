@@ -5,7 +5,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class Dealer extends Human {
   public Dealer() {
-    super();
+    super.drawCard();
+    super.drawCard();
   }
 
   public void drawCards() {
