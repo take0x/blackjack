@@ -10,7 +10,8 @@
       sse.onmessage = function (event) {
         console.log("sse.onmessage")
         console.log(event.data);
-        var players = JSON.parse(event.data);
+        var room = JSON.parse(event.data);
+        var players = room.players;
         var players_list = "";
         var all_standed = true;
         for (var i = 0; i < players.length; i++) {
@@ -34,6 +35,17 @@
         var p = document.getElementById("players_list");
         p.innerHTML = players_list;
         if (all_standed) {
+          var dealer = room.dealer;
+          var dealer_data = "<h3>Dealer</h3><div>";
+          for (var i = 0; i < dealer.cards.length; i++) {
+            var card = "<span>" + dealer.cards[i].display + " </span>";
+            dealer_data += card;
+          }
+          dealer_data += "</div>";
+          dealer_data += "<div>合計：" + dealer.sum + "</div>";
+          dealer_data += "</div>";
+          var d = document.getElementById("dealer");
+          d.innerHTML = dealer_data;
           sse.close();
         }
       }
@@ -48,7 +60,7 @@
 
 
   <p th:if="${room}">
-  <div>
+  <div id="dealer">
     <h3>Dealer</h3>
     <div>
       <span th:each="card:${room.dealer.cards}">[[${card}]] </span>
