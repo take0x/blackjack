@@ -10,7 +10,8 @@
       sse.onmessage = function (event) {
         console.log("sse.onmessage")
         console.log(event.data);
-        var players = JSON.parse(event.data);
+        var room = JSON.parse(event.data);
+        var players = room.players;
         var players_list = "";
         for (var i = 0; i < players.length; i++) {
           players_list += "<div>"

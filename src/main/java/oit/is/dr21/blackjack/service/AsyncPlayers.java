@@ -24,7 +24,7 @@ public class AsyncPlayers {
           TimeUnit.MILLISECONDS.sleep(500);
           continue;
         }
-        emitter.send(room.getPlayers());
+        emitter.send(room);
         TimeUnit.MILLISECONDS.sleep(1000);
         room.setUpdated(false);
       }
