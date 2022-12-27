@@ -50,6 +50,13 @@ public class Room {
     return null;
   }
 
+  public int checkBet(int bet) {
+    if (bet <= 0) {
+      return 0;
+    }
+    return bet;
+  }
+
   public void judgeLimit() {
     if (players.size() >= 4) {
       this.enableEntry = false;

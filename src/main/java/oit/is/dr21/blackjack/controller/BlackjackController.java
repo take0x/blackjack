@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import oit.is.dr21.blackjack.model.Dealer;
+import oit.is.dr21.blackjack.model.Mining;
 import oit.is.dr21.blackjack.model.Player;
 import oit.is.dr21.blackjack.model.Room;
 import oit.is.dr21.blackjack.model.UserDataMapper;
@@ -28,6 +29,7 @@ public class BlackjackController {
 
   Player player;
   Dealer dealer;
+  Mining miningMachine;
 
   @Autowired
   Room room;
@@ -57,6 +59,27 @@ public class BlackjackController {
     return "lobby.html";
   }
 
+  ////////////////////////////////////////////////////////////////////////////////
+  @GetMapping("/miningroom")
+  public String miningroom(Principal prin, ModelMap model) {
+    miningMachine = new Mining();
+    Player p = udMapper.selectPlayerByName(prin.getName());
+    model.addAttribute("coin", p.getCoin());
+    return "miningroom.html";
+  }
+
+  @GetMapping("/mining")
+  public String mining(Principal prin, ModelMap model) {
+    int minedCoin = 0;
+    minedCoin = miningMachine.miningCoin();
+    Player p = udMapper.selectPlayerByName(prin.getName());
+    p.setCoin(p.getCoin() + minedCoin);
+    udMapper.updateCoinByName(p.getName(), p.getCoin());
+    model.addAttribute("coin", p.getCoin());
+    return "miningroom.html";
+  }
+
+  ///////////////////////////////////////////////////////////////////////////////////
   @PostMapping("/gamestart")
   @Transactional
   public String gameStart(Principal prin, ModelMap model, @RequestParam int bet) {
@@ -65,6 +88,7 @@ public class BlackjackController {
       this.room.setDealerUpdated(true);
     }
     Player player = room.getPlayerByName(prin.getName());
+    bet = this.room.checkBet(bet);
     int coin = player.betCoin(bet);
     udMapper.updateCoinByName(player.getName(), coin);
     player.drawFirst();

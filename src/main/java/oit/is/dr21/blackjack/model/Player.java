@@ -22,9 +22,13 @@ public class Player extends Human {
   }
 
   public int betCoin(int bet) {
-    this.coin -= bet;
-    this.bet = bet;
-    return this.coin;
+    if (bet > coin || bet == 0) {
+      return this.coin;
+    } else {
+      this.coin -= bet;
+      this.bet = bet;
+      return this.coin;
+    }
   }
 
   public String getResult() {
