@@ -16,11 +16,25 @@ public abstract class Human {
       sum += card.getValue();
     }
     this.sum = sum;
+    if (this.sum > 21) {
+      changeAce();
+    }
   }
 
   public void drawCard() {
     cards.add(new Card());
     this.calcSum();
+  }
+
+  private void changeAce() {
+    boolean isChange = false;
+    for (Card card : this.cards) {
+      isChange = card.changeAceValue();
+      if (isChange) {
+        calcSum();
+        break;
+      }
+    }
   }
 
   public ArrayList<Card> getCards() {

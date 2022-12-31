@@ -47,6 +47,19 @@ public class Card {
   }
 
   /**
+   * カードの数字(number)がAであり，計算時の数値(value)が11であれば数値を1に変える．
+   *
+   * @return boolean型 数値変更が行われればtrue それ以外ではfalse
+   */
+  public boolean changeAceValue() {
+    if (this.number.equals("A") && this.value == 11) {
+      this.value = 1;
+      return true;
+    }
+    return false;
+  }
+
+  /**
    * カードの表示と価値を数字から指定
    *
    * @param num カードの数字
@@ -55,7 +68,7 @@ public class Card {
     switch (num) {
       case 1:
         this.number = "A";
-        this.value = 1;
+        this.value = 11;
         break;
       case 11:
         this.number = "J";
