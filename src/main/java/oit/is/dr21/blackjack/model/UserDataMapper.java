@@ -10,6 +10,9 @@ public interface UserDataMapper {
   @Select("SELECT coin FROM userData WHERE name = #{name}")
   int selectCoinByName(String name);
 
+  @Select("SELECT * FROM userData WHERE name = #{name}")
+  Player selectPlayerByName(String name);
+
   @Update("UPDATE userData SET coin = #{coin} WHERE name = #{name}")
   void updateCoinByName(String name, int coin);
 }
