@@ -46,6 +46,11 @@
           dealer_data += "</div>";
           var d = document.getElementById("dealer");
           d.innerHTML = dealer_data;
+
+          var return_link = "<a href='/blackjack/returnlobby'>再戦</a> <a href='/blackjack/returnhome'>退室</a>";
+          var r = document.getElementById("return");
+          r.innerHTML = return_link;
+
           sse.close();
         }
       }
@@ -85,10 +90,7 @@
   </div>
   </p>
 
-  <p>
-    <a href="/blackjack/returnlobby">再戦</a>
-    <a href="/blackjack/returnhome">退室</a>
-  </p>
+  <div id="return"></div>
 </body>
 
 </html>
