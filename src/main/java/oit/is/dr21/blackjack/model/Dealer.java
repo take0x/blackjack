@@ -18,7 +18,11 @@ public class Dealer extends Human {
     String result = "";
     int dealerSum = super.getSum();
     int playerSum = player.getSum();
-    if (player.sum > 21) {
+
+    if (player.isBlackjack() && !super.isBlackjack()) {
+      result = "Blackjack!";
+      player.setCoin(player.getCoin() + (int) (player.getBet() * 2.5));
+    } else if (playerSum > 21) {
       result = "Burst";
     } else if (playerSum > dealerSum || dealerSum > 21) {
       result = "Win";

@@ -37,6 +37,10 @@ public abstract class Human {
     }
   }
 
+  public Boolean isBlackjack() {
+    return this.cards.size() == 2 && this.sum == 21;
+  }
+
   public ArrayList<Card> getCards() {
     return cards;
   }
