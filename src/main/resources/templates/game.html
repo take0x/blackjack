@@ -65,7 +65,7 @@
   </div>
 
   <div>
-    <a href="/blackjack/gameplay?action=hit">ヒット</a>
+    <a th:if="${!burst}" href="/blackjack/gameplay?action=hit">ヒット</a>
     <a href="/blackjack/gameresult">スタンド</a>
   </div>
 

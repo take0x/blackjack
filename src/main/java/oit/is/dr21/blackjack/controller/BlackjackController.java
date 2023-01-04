@@ -70,6 +70,7 @@ public class BlackjackController {
     player.drawFirst();
     model.addAttribute("coin", bet);
     model.addAttribute("room", this.room);
+    model.addAttribute("burst", false);
     this.room.setEnableEntry(false);
     this.room.setUpdated(true);
     return "game.html";
@@ -79,8 +80,13 @@ public class BlackjackController {
   public String gamePlay(Principal prin, @RequestParam String action, ModelMap model) {
     Player player = room.getPlayerByName(prin.getName());
     // Dealer dealer = room.getDealer();
+
+    model.addAttribute("burst", false);
     if (action.equals("hit")) {
       player.drawCard();
+      if (player.getSum() > 21) {
+        model.addAttribute("burst", true);
+      }
       room.setUpdated(true);
     } else if (action.equals("stand")) {
       player.setIsStand(true);
