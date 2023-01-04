@@ -45,7 +45,7 @@
   </div>
   <div>
     <form th:action="@{/blackjack/gamestart}" method="post">
-      <input type="number" name="bet" />
+      <input type="number" name="bet" required>
       <input type="submit" value="ゲームスタート">
     </form>
   </div>
