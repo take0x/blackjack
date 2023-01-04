@@ -84,7 +84,7 @@ public class BlackjackController {
     model.addAttribute("burst", false);
     if (action.equals("hit")) {
       player.drawCard();
-      if (player.getSum() > 21) {
+      if (player.getSum() >= 21) {
         model.addAttribute("burst", true);
       }
       room.setUpdated(true);
