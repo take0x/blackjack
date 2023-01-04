@@ -90,7 +90,12 @@
   </div>
   </p>
 
-  <div id="return"></div>
+  <div id="return">
+    <span th:if="${return}">
+      <a href='/blackjack/returnlobby'>再戦</a>
+      <a href='/blackjack/returnhome'>退室</a>
+    </span>
+  </div>
 </body>
 
 </html>

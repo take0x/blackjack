@@ -130,13 +130,16 @@ public class BlackjackController {
     Player player = room.getPlayerByName(prin.getName());
     player.setIsStand(true);
     if (this.room.checkAllStanded()) {
-      this.room.judgePlayers();
-      for (Player p : this.room.getPlayers()) {
-        udMapper.updateCoinByName(p.getName(), p.getCoin());
+      model.addAttribute("return", true);
+      if (!this.room.getEnableEntry()) {
+        this.room.judgePlayers();
+        for (Player p : this.room.getPlayers()) {
+          udMapper.updateCoinByName(p.getName(), p.getCoin());
+        }
+        this.room.setEnableEntry(true);
+        this.room.setUpdated(true);
+        this.room.setDealerUpdated(false);
       }
-      this.room.setEnableEntry(true);
-      this.room.setUpdated(true);
-      this.room.setDealerUpdated(false);
     }
     model.addAttribute("room", this.room);
     return "result.html";
