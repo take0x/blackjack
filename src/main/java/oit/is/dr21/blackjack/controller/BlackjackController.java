@@ -1,7 +1,7 @@
 package oit.is.dr21.blackjack.controller;
 
 import java.security.Principal;
-// import java.util.ArrayList;
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -47,6 +47,35 @@ public class BlackjackController {
   public String home(ModelMap model) {
     model.addAttribute("room", this.room);
     return "home.html";
+  }
+
+  @GetMapping("/controluser")
+  public String controluser(ModelMap model) {
+    ArrayList<Player> players = udMapper.selectAllUser();
+    model.addAttribute("resetcoin", false);
+    model.addAttribute("resetroom", false);
+    model.addAttribute("players", players);
+    return "control.html";
+  }
+
+  @GetMapping("/resetcoin")
+  public String resetcoin(ModelMap model) {
+    udMapper.resetCoinAllUser();
+    ArrayList<Player> players = udMapper.selectAllUser();
+    model.addAttribute("resetcoin", true);
+    model.addAttribute("resetroom", false);
+    model.addAttribute("players", players);
+    return "control.html";
+  }
+
+  @GetMapping("/kickplayers")
+  public String kickplayers(ModelMap model) {
+    ArrayList<Player> players = udMapper.selectAllUser();
+    this.room.removeAllPlayers();
+    model.addAttribute("resetcoin", false);
+    model.addAttribute("resetroom", true);
+    model.addAttribute("players", players);
+    return "control.html";
   }
 
   @GetMapping("/lobby")
