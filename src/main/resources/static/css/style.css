@@ -1,0 +1,12 @@
+body {
+  color: white;
+  background: linear-gradient(45deg, darkgreen 25%, transparent 25%, transparent 75%, darkgreen 75%),
+    linear-gradient(45deg, darkgreen 25%, transparent 25%, transparent 75%, darkgreen 75%);
+  background-color: green;
+  background-size: 80px 80px;
+  background-position: 0 0, 40px 40px;
+}
+
+a {
+  color: white;
+}
