@@ -39,6 +39,10 @@ public class Room {
     }
   }
 
+  public void removeAllPlayers() {
+    players.clear();
+  }
+
   public Player getPlayerByName(String name) {
     if (players.size() != 0) {
       for (Player p : this.players) {

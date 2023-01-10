@@ -34,6 +34,10 @@
   <a href="/rule">ルール</a>
   <a href="/blackjack/miningroom">マイニング</a>
   <a href="/logout">ログアウト</a>
+  <br>
+  <div sec:authorize="hasRole('ROLE_ADMIN')">
+    <a href="/blackjack/controluser">管理画面</a>
+  </div>
 </body>
 
 </html>
