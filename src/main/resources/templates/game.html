@@ -15,8 +15,8 @@
         var players = room.players;
         var players_list = "";
         for (var i = 0; i < players.length; i++) {
-          players_list += "<div>"
-          var name = "<h3>" + players[i].name + "</h3>";
+          players_list += "<div class='member'>"
+          var name = "<h3 class='name'>" + players[i].name + "</h3>";
           players_list += name;
           players_list += "<div>所持コイン数：" + players[i].coin + " / BET：" + players[i].bet + "</div>";
           players_list += "<div>";
@@ -38,40 +38,37 @@
 </head>
 
 <body>
-  <h1>Game</h1>
+  <h1>Blackjack Game</h1>
   <h2>Room番号: [[${room.roomId}]] </h2>
-  <h2>Hello!<div sec:authentication="name"></div>
-  </h2>
+  <h2>You are <span sec:authentication="name"></span>.</h2>
 
-  <p th:if="${room}">
-  <div>
-    <h3>Dealer</h3>
-    <div>
-      <span th:each="card:${room.dealer.cards}">[[${card}]] </span>
-    </div>
-    <div>
-      合計：[[${room.dealer.sum}]]
-    </div>
-  </div>
-
-  <div id="players_list">
-    <div th:each="player:${room.players}">
-      <h3>[[${player.name}]]</h3>
-      <div>所持コイン数：[[${player.coin}]] / BET：[[${player.bet}]]</div>
+  <div th:if="${room}">
+    <div class="member">
+      <h3 class="name">Dealer</h3>
       <div>
-        <span th:each="card:${player.cards}">[[${card}]] </span>
+        <span th:each="card:${room.dealer.cards}">[[${card}]] </span>
       </div>
-      <div>合計：[[${player.sum}]]</div>
+      <div>
+        合計：[[${room.dealer.sum}]]
+      </div>
+    </div>
+
+    <div id="players_list">
+      <div class="member" th:each="player:${room.players}">
+        <h3 class="name">[[${player.name}]]</h3>
+        <div>所持コイン数：[[${player.coin}]] / BET：[[${player.bet}]]</div>
+        <div>
+          <span th:each="card:${player.cards}">[[${card}]] </span>
+        </div>
+        <div>合計：[[${player.sum}]]</div>
+      </div>
     </div>
   </div>
-
+  <br>
   <div>
     <a th:if="${!burst}" href="/blackjack/gameplay?action=hit">ヒット</a>
     <a href="/blackjack/gameresult">スタンド</a>
   </div>
-
-
-  </p>
 </body>
 
 </html>

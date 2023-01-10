@@ -26,15 +26,14 @@
 </head>
 
 <body>
-  <h1>Home</h1>
-  <h3>Hello!<div sec:authentication="name"></div>
-  </h3>
-  <div th:if="room.enableEntry" id="room_link">
-    <a href="/blackjack/lobby">入室</a>
-  </div>
-  <a href="/rule">ルール</a>
-  <a href="/blackjack/miningroom">マイニング</a>
-  <a href="/logout">ログアウト</a>
+  <h1>Blackjack Home</h1>
+  <h2>Hello! <span sec:authentication="name"></span></h3>
+    <span th:if="room.enableEntry" id="room_link">
+      <a href="/blackjack/lobby">入室</a>
+    </span>
+    <a href="/rule">ルール</a>
+    <a href="/blackjack/miningroom">マイニング</a>
+    <a href="/logout">ログアウト</a>
 </body>
 
 </html>
