@@ -8,10 +8,10 @@ public class Card {
   private String display;
 
   private String suite;
-  final String SPADE = "♠";
-  final String CLUB = "♣";
-  final String DIA = "♦";
-  final String HEART = "♥";
+  final String SPADE = "S";
+  final String CLUB = "C";
+  final String DIA = "D";
+  final String HEART = "H";
 
   /**
    * 引数無しのコンストラクタ
@@ -87,7 +87,7 @@ public class Card {
         this.value = num;
         break;
     }
-    this.display = this.suite + this.number;
+    setDisplay();
   }
 
   /**
@@ -111,7 +111,11 @@ public class Card {
         this.suite = HEART;
         break;
     }
-    this.display = this.suite + this.number;
+    setDisplay();
+  }
+
+  private void setDisplay() {
+    this.display = this.suite + "_" + this.number;
   }
 
   public String getSuite() {
@@ -148,6 +152,6 @@ public class Card {
 
   @Override
   public String toString() {
-    return this.suite + this.number;
+    return this.display;
   }
 }

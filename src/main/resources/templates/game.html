@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <title>Blackjack Game</title>
   <link href="/css/style.css" rel="stylesheet" type="text/css">
+  <link href="/css/card.css" rel="stylesheet" type="text/css">
   <script>
     window.onload = function () {
       var sse = new EventSource('/blackjack/monitorPlayers');
@@ -19,9 +20,10 @@
           var name = "<h3>" + players[i].name + "</h3>";
           players_list += name;
           players_list += "<div>所持コイン数：" + players[i].coin + " / BET：" + players[i].bet + "</div>";
-          players_list += "<div>";
+          players_list += "<div class='cards'>";
           for (var j = 0; j < players[i].cards.length; j++) {
-            var card = "<span>" + players[i].cards[j].display + " </span>";
+            var display = players[i].cards[j].display;
+            var card = "<span><img src='/image/cards/" + display + ".png' alt='" + display + "'/></span>";
             players_list += card;
           }
           players_list += "</div>";
@@ -46,8 +48,10 @@
   <p th:if="${room}">
   <div>
     <h3>Dealer</h3>
-    <div>
-      <span th:each="card:${room.dealer.cards}">[[${card}]] </span>
+    <div class="cards">
+      <span th:each="card:${room.dealer.cards}">
+        <img th:src="@{/image/cards/{card}.png (card=${card})}" th:alt="${card}" />
+      </span>
     </div>
     <div>
       合計：[[${room.dealer.sum}]]
@@ -58,8 +62,10 @@
     <div th:each="player:${room.players}">
       <h3>[[${player.name}]]</h3>
       <div>所持コイン数：[[${player.coin}]] / BET：[[${player.bet}]]</div>
-      <div>
-        <span th:each="card:${player.cards}">[[${card}]] </span>
+      <div class="cards">
+        <span th:each="card:${player.cards}">
+          <img th:src="@{/image/cards/{card}.png (card=${card})}" th:alt="${card}" />
+        </span>
       </div>
       <div>合計：[[${player.sum}]]</div>
     </div>

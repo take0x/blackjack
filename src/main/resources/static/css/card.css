@@ -1,0 +1,12 @@
+.cards>span {
+  margin-left: -70px;
+}
+
+.cards>span:nth-child(1) {
+  margin-left: 0px;
+}
+
+.cards>span>img {
+  width: 110px;
+  pointer-events: none;
+}
