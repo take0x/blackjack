@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Admin Setting</title>
+</head>
+
+<body>
+  <h1>ADMIN SETTING</h1>
+  <a href="/blackjack/resetcoin">全ユーザのコイン枚数を100枚にリセット</a><br>
+  <a href="/blackjack/controluser">データベース更新</a>
+  <a href="/blackjack/kickplayers">ルーム内のプレイヤーを全員退出</a><br>
+  <div th:if="${resetcoin}">リセットされました</div>
+  <div th:if="${resetroom}">全員退出されました</div>
+  <div th:each="player,stat:${players}">
+    <tr>
+      <td>[[${stat.count}]]</td>
+      <td>ユーザ名:[[${player.name}]]</td>
+      <td>コイン数:[[${player.coin}]]</td>
+    </tr>
+  </div>
+  <a href="/blackjack/returnhome">退室</a>
+</body>
