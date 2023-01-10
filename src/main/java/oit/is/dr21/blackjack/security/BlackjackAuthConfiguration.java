@@ -20,23 +20,33 @@ public class BlackjackAuthConfiguration {
 
     // $ sshrun htpasswd -nbBC 10 user1 p@ss
     UserDetails user1 = users
-        .username("コバヤシ")
-        .password("$2y$10$Iux5hfcJ0mjBA5ahM77iGe35qn456ftNtweJuhu7ZBnC6HEddCxMe")
+        .username("user1")
+        .password("$2y$10$DP969EOL8QL8Va6DzZZbuetdR0W3bkQYN6nFO0EyL8B830GicQhpm")
         .roles("USER")
         .build();
     UserDetails user2 = users
-        .username("オカドメ")
-        .password("$2y$10$yytrg5Cs.hWXqcqn.LRdZOfaQX908Rmw0yfeQZtTmfMemcm3YYwvi")
+        .username("user2")
+        .password("$2y$10$5HVv2dGidJAB7gGhrDbK5Oq4FE8utKchpQCgeAfhgWUIWOKcImh6W")
         .roles("USER")
         .build();
     UserDetails user3 = users
-        .username("タナカ")
-        .password("$2y$10$h.OrIQmgG2enjbu.zqvM5eHemyGob49tOQf9qMER69WxZ0NoRpfh.")
+        .username("user3")
+        .password("$2y$10$UBp2wV615QjK.JfZHjcrme.naCEIrN06i/OUusbemopyYXQWSS/YC")
         .roles("USER")
         .build();
     UserDetails user4 = users
-        .username("ミナミ")
-        .password("$2y$10$B5qS4sm3RDx13Cqq.dVX3.PRSf1IgeLEGb18wvDVhMzX.IMAOPvgy")
+        .username("user4")
+        .password("$2y$10$xH62ObyBg99j8/nXvFrKgurDywKocZ05Gm2/y7fN0IBjg3IQNAc0m")
+        .roles("USER")
+        .build();
+    UserDetails user5 = users
+        .username("user5")
+        .password("$2y$10$ZEJ.G35WZBYRjlh6QTC3BO7eq5/gNLMis/wzV7d1Q7XfByHCibb6C")
+        .roles("USER")
+        .build();
+    UserDetails user6 = users
+        .username("user6")
+        .password("$2y$10$g2ABxk3/KEI3hEE.aH5V7e0QirNXncPAHVl4NrJxD/rjgixTOLtlq")
         .roles("USER")
         .build();
     UserDetails admin = users
@@ -44,7 +54,7 @@ public class BlackjackAuthConfiguration {
         .password("$2y$10$Rv3qxlWjPjqCoTJO6gLRxORrlstRFXsS3NiaZmSV0zbJarN6NQjHi")
         .roles("ADMIN")
         .build();
-    return new InMemoryUserDetailsManager(user1, user2, user3, user4, admin);
+    return new InMemoryUserDetailsManager(user1, user2, user3, user4, user5, user6, admin);
   }
 
   @Bean
