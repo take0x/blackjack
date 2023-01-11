@@ -64,3 +64,12 @@ li {
 .name {
   margin: 12px auto 0;
 }
+
+.control {
+  margin: 0 0 10px;
+}
+
+.control a {
+  margin: 5px 0;
+  display: inline-block;
+}
