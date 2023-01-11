@@ -1,4 +1,5 @@
 body {
+  text-align: center;
   color: white;
   background: linear-gradient(45deg, darkgreen 25%, transparent 25%, transparent 75%, darkgreen 75%),
     linear-gradient(45deg, darkgreen 25%, transparent 25%, transparent 75%, darkgreen 75%);
@@ -7,6 +8,68 @@ body {
   background-position: 0 0, 40px 40px;
 }
 
-a {
+input[type="number"] {
+  margin: 10px;
+  border-radius: 10px;
+  font-size: 120%;
+}
+
+input[type="number"]:focus {
+  border-color: dodgerblue;
+  box-shadow: 0 0 8px dodgerblue;
+}
+
+input[type="submit"] {
+  font-size: 105%;
+}
+
+a,
+input[type="submit"] {
+  margin: 10px;
+  padding: 5px 15px;
+  border: none;
+  border-radius: 10px;
+  text-decoration: none;
   color: white;
+  background: brown;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 50%, hotpink 50%);
+  background-position: 0 0;
+  background-size: 200% auto;
+  transition: .3s;
+}
+
+a:hover,
+input[type="submit"]:hover {
+  background-position: -100% 0;
+}
+
+ul {
+  text-align: left;
+  display: inline-block;
+}
+
+li {
+  font-size: 120%;
+}
+
+#players_list {
+  display: flex;
+  justify-content: center;
+}
+
+.member {
+  margin: auto 10px;
+}
+
+.name {
+  margin: 12px auto 0;
+}
+
+.control {
+  margin: 0 0 10px;
+}
+
+.control a {
+  margin: 5px 0;
+  display: inline-block;
 }

@@ -4,13 +4,16 @@
 <head>
   <meta charset="utf-8">
   <title>Admin Setting</title>
+  <link href="/css/style.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
   <h1>ADMIN SETTING</h1>
-  <a href="/blackjack/resetcoin">全ユーザのコイン枚数を100枚にリセット</a><br>
-  <a href="/blackjack/controluser">データベース更新</a>
-  <a href="/blackjack/kickplayers">ルーム内のプレイヤーを全員退出</a><br>
+  <div class="control">
+    <a href="/blackjack/resetcoin">全ユーザのコイン枚数を100枚にリセット</a><br>
+    <a href="/blackjack/kickplayers">ルーム内のプレイヤーを全員退出</a><br>
+    <a href="/blackjack/controluser">データベース更新</a>
+  </div>
   <div th:if="${resetcoin}">リセットされました</div>
   <div th:if="${resetroom}">全員退出されました</div>
   <div th:each="player,stat:${players}">
@@ -20,5 +23,6 @@
       <td>コイン数:[[${player.coin}]]</td>
     </tr>
   </div>
-  <a href="/blackjack/returnhome">退室</a>
+  <br>
+  <a href="/blackjack/home">戻る</a>
 </body>

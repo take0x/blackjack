@@ -16,8 +16,8 @@
         var players_list = "";
         var all_standed = true;
         for (var i = 0; i < players.length; i++) {
-          players_list += "<div>"
-          var name = "<h3>" + players[i].name + "</h3>";
+          players_list += "<div class='member'>"
+          var name = "<h3 class='name'>" + players[i].name + "</h3>";
           players_list += name;
           players_list += "<div>所持コイン数：" + players[i].coin + " / BET：" + players[i].bet + "</div>";
           players_list += "<div>";
@@ -37,7 +37,7 @@
         p.innerHTML = players_list;
         if (all_standed) {
           var dealer = room.dealer;
-          var dealer_data = "<h3>Dealer</h3><div>";
+          var dealer_data = "<h3 class='name'>Dealer</h3><div>";
           for (var i = 0; i < dealer.cards.length; i++) {
             var card = "<span>" + dealer.cards[i].display + " </span>";
             dealer_data += card;
@@ -60,14 +60,12 @@
 </head>
 
 <body>
-  <h1>Blackjack result</h1>
-
-
-
+  <h1>Blackjack Result</h1>
+  <h2>You are <span sec:authentication="name"></span>.</h2>
 
   <p th:if="${room}">
-  <div id="dealer">
-    <h3>Dealer</h3>
+  <div id="dealer" class="member">
+    <h3 class="name">Dealer</h3>
     <div>
       <span th:each="card:${room.dealer.cards}">[[${card}]] </span>
     </div>
@@ -77,8 +75,8 @@
   </div>
 
   <div id="players_list">
-    <div th:each="player:${room.players}">
-      <h3>[[${player.name}]]</h3>
+    <div class="member" th:each="player:${room.players}">
+      <h3 class="name">[[${player.name}]]</h3>
       <div>所持コイン数：[[${player.coin}]] / BET：[[${player.bet}]]</div>
       <div>
         <span th:each="card:${player.cards}">[[${card}]] </span>

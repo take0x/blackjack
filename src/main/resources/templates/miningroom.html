@@ -3,23 +3,16 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Blackjack MiningRoom</title>
+  <title>Blackjack Miningroom</title>
   <link href="/css/style.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
-  <h1>MiningRoom</h1>
-  <h3>
-    <div>Hello!</div>
-    <div sec:authentication="name"></div>
-    <div>
-      所持コイン数：[[${coin}]] 枚
-    </div>
-  </h3>
+  <h1>Blackjack Miningroom</h1>
+  <h2>Hello! <span sec:authentication="name"></span></h2>
+  <p>所持コイン数：[[${coin}]] 枚</p>
 
-  <div>
-    <a href="/blackjack/mining">マイニング</a>
-  </div>
+  <a href="/blackjack/mining">マイニング</a>
   <a href="/blackjack/home">戻る</a>
 </body>
 

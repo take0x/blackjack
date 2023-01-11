@@ -31,27 +31,23 @@
 </head>
 
 <body>
-  <h1>Game</h1>
+  <h1>Blackjack Lobby</h1>
   <h2>Room番号: [[${room.roomId}]]</h2>
-  <h2>Hello!<div sec:authentication="name"></div>
-  </h2>
+  <h2>You are <span sec:authentication="name"></span>.</h2>
   <div th:if="${room}" id="players_list">
     <ul>
       <li th:each="player : ${room.players}">[[${player.name}]]</li>
     </ul>
   </div>
-  <p>
   <div>
     所持コイン数：[[${coin}]] 枚
   </div>
-  <div>
-    <form th:action="@{/blackjack/gamestart}" method="post">
-      <input type="number" name="bet" required>
-      <input type="submit" value="ゲームスタート">
-    </form>
-  </div>
-  </p>
-  <a href="/blackjack/returnhome">退室</a>
+  <form th:action="@{/blackjack/gamestart}" method="post">
+    <input type="number" name="bet" placeholder="ベット額を入力" required>
+    <br>
+    <a href="/blackjack/returnhome">退室</a>
+    <input type="submit" value="ゲームスタート">
+  </form>
 </body>
 
 </html>
