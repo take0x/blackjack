@@ -43,7 +43,7 @@
     所持コイン数：[[${coin}]] 枚
   </div>
   <form th:action="@{/blackjack/gamestart}" method="post">
-    <input type="number" name="bet" placeholder="ベット額を入力" required>
+    <input type="number" name="bet" min="1" th:max="${coin}" placeholder="ベット額を入力" required>
     <br>
     <a href="/blackjack/returnhome">退室</a>
     <input type="submit" value="ゲームスタート">

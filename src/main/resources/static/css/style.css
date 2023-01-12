@@ -12,6 +12,7 @@ input[type="number"] {
   margin: 10px;
   border-radius: 10px;
   font-size: 120%;
+  width: 250px;
 }
 
 input[type="number"]:focus {
