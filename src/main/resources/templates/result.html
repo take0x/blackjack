@@ -47,15 +47,13 @@
         p.innerHTML = players_list;
         if (all_standed) {
           var dealer = room.dealer;
-          var dealer_data = "<h3 class='name'>Dealer</h3><div class='cards'>";
+          var dealer_data = "<h3 class='name'>Dealer (Score: " + room.dealer.sum + ")</h3><div class='cards'>";
           for (var i = 0; i < dealer.cards.length; i++) {
             var display = dealer.cards[i].display;
             var card = "<span><img src='/image/cards/" + display + ".png' alt='" + display + "'/></span>";
             dealer_data += card;
           }
-          dealer_data += "</div>";
-          dealer_data += "<div>合計：" + dealer.sum + "</div>";
-          dealer_data += "</div>";
+          dealer_data += "</div></div>";
           var d = document.getElementById("dealer");
           d.innerHTML = dealer_data;
 
