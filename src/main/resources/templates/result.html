@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <title>Blackjack Result</title>
   <link href="/css/style.css" rel="stylesheet" type="text/css">
+  <link href="/css/card.css" rel="stylesheet" type="text/css">
   <script>
     window.onload = function () {
       var sse = new EventSource('/blackjack/monitorPlayers');
@@ -20,9 +21,10 @@
           var name = "<h3 class='name'>" + players[i].name + "</h3>";
           players_list += name;
           players_list += "<div>所持コイン数：" + players[i].coin + " / BET：" + players[i].bet + "</div>";
-          players_list += "<div>";
+          players_list += "<div class='cards'>";
           for (var j = 0; j < players[i].cards.length; j++) {
-            var card = "<span>" + players[i].cards[j].display + " </span>";
+            var display = players[i].cards[j].display;
+            var card = "<span><img src='/image/cards/" + display + ".png' alt='" + display + "'/></span>";
             players_list += card;
           }
           players_list += "</div>";
@@ -37,9 +39,10 @@
         p.innerHTML = players_list;
         if (all_standed) {
           var dealer = room.dealer;
-          var dealer_data = "<h3 class='name'>Dealer</h3><div>";
+          var dealer_data = "<h3 class='name'>Dealer</h3><div class='cards'>";
           for (var i = 0; i < dealer.cards.length; i++) {
-            var card = "<span>" + dealer.cards[i].display + " </span>";
+            var display = players[i].cards[j].display;
+            var card = "<span><img src='/image/cards/" + display + ".png' alt='" + display + "'/></span>";
             dealer_data += card;
           }
           dealer_data += "</div>";
@@ -63,31 +66,35 @@
   <h1>Blackjack Result</h1>
   <h2>You are <span sec:authentication="name"></span>.</h2>
 
-  <p th:if="${room}">
-  <div id="dealer" class="member">
-    <h3 class="name">Dealer</h3>
-    <div>
-      <span th:each="card:${room.dealer.cards}">[[${card}]] </span>
+  <div th:if="${room}">
+    <div id="dealer" class="member">
+      <h3 class="name">Dealer</h3>
+      <div class="cards">
+        <span th:each="card:${room.dealer.cards}">
+          <img th:src="@{/image/cards/{card}.png (card=${card})}" th:alt="${card}" />
+        </span>
+      </div>
+      <div>
+        合計：[[${room.dealer.sum}]]
+      </div>
     </div>
-    <div>
-      合計：[[${room.dealer.sum}]]
-    </div>
-  </div>
 
-  <div id="players_list">
-    <div class="member" th:each="player:${room.players}">
-      <h3 class="name">[[${player.name}]]</h3>
-      <div>所持コイン数：[[${player.coin}]] / BET：[[${player.bet}]]</div>
-      <div>
-        <span th:each="card:${player.cards}">[[${card}]] </span>
-      </div>
-      <div>
-        合計：[[${player.sum}]] <br>
-        結果：[[${player.result}]]
+    <div id="players_list">
+      <div class="member" th:each="player:${room.players}">
+        <h3 class="name">[[${player.name}]]</h3>
+        <div>所持コイン数：[[${player.coin}]] / BET：[[${player.bet}]]</div>
+        <div class="cards">
+          <span th:each="card:${player.cards}">
+            <img th:src="@{/image/cards/{card}.png (card=${card})}" th:alt="${card}" />
+          </span>
+        </div>
+        <div>
+          合計：[[${player.sum}]] <br>
+          結果：[[${player.result}]]
+        </div>
       </div>
     </div>
   </div>
-  </p>
 
   <div id="return">
     <span th:if="${return}">
