@@ -9,4 +9,9 @@ public class BlackjackRuleController {
   public String rule() {
     return "blackjackRule.html";
   }
+
+  @GetMapping("/top")
+  public String top() {
+    return "index";
+  }
 }
