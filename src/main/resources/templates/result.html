@@ -8,6 +8,14 @@
   <link href="/css/card.css" rel="stylesheet" type="text/css">
   <script>
     window.onload = function () {
+      var member = document.getElementsByClassName("member");
+      var loginname = document.getElementById("loginname").innerHTML;
+      for (var i = 0; i < member.length; i++) {
+        if (member[i].firstElementChild.id == loginname) {
+          member[i].classList.add("loginuser");
+          break;
+        }
+      }
       var sse = new EventSource('/blackjack/monitorPlayers');
       sse.onmessage = function (event) {
         console.log("sse.onmessage")
@@ -17,10 +25,10 @@
         var players_list = "";
         var all_standed = true;
         for (var i = 0; i < players.length; i++) {
-          players_list += "<div class='member'>"
-          var name = "<h3 class='name'>" + players[i].name + "</h3>";
+          players_list += "<div class='member" + (players[i].name == loginname ? " loginuser" : "") + "'>";
+          var name = "<h3 class='name'>" + players[i].name + " (Score: " + players[i].sum + ")</h3>";
           players_list += name;
-          players_list += "<div>所持コイン数：" + players[i].coin + " / BET：" + players[i].bet + "</div>";
+          players_list += "<div>所持コイン数: " + players[i].coin + " / BET: " + players[i].bet + "</div>";
           players_list += "<div class='cards'>";
           for (var j = 0; j < players[i].cards.length; j++) {
             var display = players[i].cards[j].display;
@@ -28,7 +36,7 @@
             players_list += card;
           }
           players_list += "</div>";
-          players_list += "<div>合計：" + players[i].sum + "<br>結果：" + players[i].result + "</div>";
+          players_list += "<p>結果：" + players[i].result + "</p>";
           players_list += "</div>";
           if (!players[i].isStand) {
             all_standed = false;
@@ -64,44 +72,38 @@
 
 <body>
   <h1>Blackjack Result</h1>
-  <h2>You are <span sec:authentication="name"></span>.</h2>
 
   <div th:if="${room}">
     <div id="dealer" class="member">
-      <h3 class="name">Dealer</h3>
+      <h3 class="name">Dealer (Score: [[${room.dealer.sum}]])</h3>
       <div class="cards">
         <span th:each="card:${room.dealer.cards}">
           <img th:src="@{/image/cards/{card}.png (card=${card})}" th:alt="${card}" />
         </span>
       </div>
-      <div>
-        合計：[[${room.dealer.sum}]]
-      </div>
     </div>
 
     <div id="players_list">
       <div class="member" th:each="player:${room.players}">
-        <h3 class="name">[[${player.name}]]</h3>
-        <div>所持コイン数：[[${player.coin}]] / BET：[[${player.bet}]]</div>
+        <h3 class="name" th:id="${player.name}">[[${player.name}]] (Score: [[${player.sum}]])</h3>
+        <div>所持コイン数: [[${player.coin}]] / BET: [[${player.bet}]]</div>
         <div class="cards">
           <span th:each="card:${player.cards}">
             <img th:src="@{/image/cards/{card}.png (card=${card})}" th:alt="${card}" />
           </span>
         </div>
-        <div>
-          合計：[[${player.sum}]] <br>
-          結果：[[${player.result}]]
-        </div>
+        <p>結果：[[${player.result}]]</p>
       </div>
     </div>
   </div>
-
+  <br>
   <div id="return">
     <span th:if="${return}">
       <a href='/blackjack/returnlobby'>再戦</a>
       <a href='/blackjack/returnhome'>退室</a>
     </span>
   </div>
+  <span id="loginname" style="display: none;" sec:authentication="name"></span>
 </body>
 
 </html>

@@ -58,8 +58,13 @@ li {
   justify-content: center;
 }
 
+#players_list p {
+  margin: 0 auto 10px;
+}
+
 .member {
   margin: auto 10px;
+  padding: 0 5px;
 }
 
 .name {
@@ -73,4 +78,8 @@ li {
 .control a {
   margin: 5px 0;
   display: inline-block;
+}
+
+.loginuser {
+  border: 3px solid yellow;
 }
