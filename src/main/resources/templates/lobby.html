@@ -32,7 +32,6 @@
 
 <body>
   <h1>Blackjack Lobby</h1>
-  <h2>Room番号: [[${room.roomId}]]</h2>
   <h2>You are <span sec:authentication="name"></span>.</h2>
   <div th:if="${room}" id="players_list">
     <ul>
