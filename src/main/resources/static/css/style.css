@@ -25,6 +25,7 @@ input[type="submit"] {
 }
 
 a,
+button,
 input[type="submit"] {
   margin: 10px;
   padding: 5px 15px;
@@ -40,6 +41,7 @@ input[type="submit"] {
 }
 
 a:hover,
+button:hover,
 input[type="submit"]:hover {
   background-position: -100% 0;
 }
@@ -49,7 +51,7 @@ ul {
   display: inline-block;
 }
 
-li {
+ul li {
   font-size: 120%;
 }
 
@@ -82,4 +84,34 @@ li {
 
 .loginuser {
   border: 3px solid yellow;
+}
+
+.rule-head {
+  margin-bottom: 0;
+}
+
+.rule-body {
+  text-align: left;
+  width: 800px;
+  max-width: 95%;
+  display: inline-block;
+  background: #007200;
+  margin-top: 0;
+  padding: 5px;
+  border: 2px solid black;
+  border-radius: 10px;
+}
+
+ol.rule-body {
+  list-style-position: inside;
+}
+
+ol li {
+  text-indent: -1.3em;
+  padding-left: 1.3em;
+  margin: 3px auto;
+}
+
+li ol {
+  margin-left: -2em;
 }
