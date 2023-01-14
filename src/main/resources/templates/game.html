@@ -73,7 +73,7 @@
   </div>
   <br>
   <div>
-    <a th:if="${!burst}" href="/blackjack/gameplay?action=hit">ヒット</a>
+    <a th:unless="${burst}" href="/blackjack/gameplay?action=hit">ヒット</a>
     <a href="/blackjack/gameresult">スタンド</a>
   </div>
   <span id="loginname" style="display: none;" sec:authentication="name"></span>
