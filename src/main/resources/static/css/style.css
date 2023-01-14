@@ -27,6 +27,7 @@ input[type="submit"] {
 a,
 button,
 input[type="submit"] {
+  display: inline-block;
   margin: 10px;
   padding: 5px 15px;
   border: none;
