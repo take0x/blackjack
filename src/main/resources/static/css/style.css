@@ -24,6 +24,11 @@ input[type="submit"] {
   font-size: 105%;
 }
 
+button {
+  font-size: 1.1em;
+  cursor: pointer;
+}
+
 a,
 button,
 input[type="submit"] {
