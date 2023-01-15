@@ -139,7 +139,7 @@ $ bash ./gradlew bootrun
 
 #### １．トップ画面
 
-![トップ画面](/blackjack/readme_img/top.png)
+![top](https://user-images.githubusercontent.com/106970558/212520720-5c5a5cf7-d0c2-4df3-959e-b61365e158a1.png)
 
 このページでは以下の機能があります．
 
@@ -153,7 +153,7 @@ $ bash ./gradlew bootrun
 
 #### ２．ルール説明画面
 
-![ルール説明画面](/blackjack/readme_img/rule.png)
+![rule](https://user-images.githubusercontent.com/106970558/212520719-328afd4e-74e0-4d21-8702-ca7bb888ef1e.png)
 
 このページではブラックジャックのルール説明を書いています．
 
@@ -162,7 +162,7 @@ $ bash ./gradlew bootrun
 
 #### ３．ログイン画面
 
-![ログイン画面](/blackjack/readme_img/login.png)
+![login](https://user-images.githubusercontent.com/106970558/212520726-0b5cf1fd-cacf-46c2-9eae-0b0e58f6a392.png)
 
 このページは以下の機能があります．
 
@@ -181,7 +181,7 @@ $ bash ./gradlew bootrun
 
 #### ４．ホーム画面
 
-![ホーム画面](/blackjack/readme_img/home.png)
+![home-admin](https://user-images.githubusercontent.com/106970558/212520723-194f317b-69dd-4b0a-b731-816b5aef8e33.png)
 
 このページは以下の機能があります．
 
@@ -198,7 +198,7 @@ $ bash ./gradlew bootrun
 
 #### ５．ロビー画面
 
-![ロビー画面](/blackjack/readme_img/lobby.png)
+![lobby](https://user-images.githubusercontent.com/106970558/212520725-6438365a-4691-4e30-994e-23458b1359b1.png)
 
 このページは以下の機能があります．
 
@@ -217,7 +217,7 @@ $ bash ./gradlew bootrun
 
 #### ６．ゲーム画面
 
-![ゲーム画面](/blackjack/readme_img/game.png)
+![game](https://user-images.githubusercontent.com/106970558/212520722-e1f5ddc4-8344-408e-978d-7d2d45e821a2.png)
 
 このページは以下の機能があります．
 
@@ -231,7 +231,7 @@ $ bash ./gradlew bootrun
 
 #### ７．結果表示画面
 
-![結果表示画面](/blackjack/readme_img/result.png)
+![result](https://user-images.githubusercontent.com/106970558/212520718-295529e6-933e-4b3d-8ff4-eb5251721966.png)
 
 このページはでは以下の機能があります．
 
@@ -245,7 +245,7 @@ $ bash ./gradlew bootrun
 
 #### ８．マイニング画面
 
-![マイニング画面](/blackjack/readme_img/mining.png)
+![mining](https://user-images.githubusercontent.com/106970558/212520727-f424e767-319b-40eb-b8a4-6e63e15a0658.png)
 
 このページは以下の機能があります．
 
@@ -259,7 +259,7 @@ $ bash ./gradlew bootrun
 
 #### ９．管理者画面
 
-![管理者画面](/blackjack/readme_img/admin.png)
+![admin](https://user-images.githubusercontent.com/106970558/212520721-0b304246-7079-4d40-8076-2bd8990a8118.png)
 
 adminでログインしユーザのみが閲覧できます．
 このページはでは以下の機能があります．
