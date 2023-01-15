@@ -3,7 +3,7 @@
 
 **本アプリケーションはjava11を利用できる環境で動作します．**
 
-最終更新日 2023/1/10
+最終更新日 2023/1/15
 
 ---
 
@@ -111,6 +111,11 @@ $ bash ./gradlew bootrun
 #### 停止方法
 プログラムを停止する際には【Ctrl + C】`で強制終了できます．
 
+
+#### 備考
+
+pdf版のセットアップマニュアル・ユーザマニュアルはbrackjack/docにあります．
+
 ---
 ## ユーザマニュアル
 
@@ -139,7 +144,7 @@ $ bash ./gradlew bootrun
 
 #### １．トップ画面
 
-![top](https://user-images.githubusercontent.com/106970558/212520720-5c5a5cf7-d0c2-4df3-959e-b61365e158a1.png)
+![top](https://user-images.githubusercontent.com/106970558/212536889-6cd33963-230f-4122-9168-1fcc92b1688c.png)
 
 このページでは以下の機能があります．
 
@@ -153,7 +158,7 @@ $ bash ./gradlew bootrun
 
 #### ２．ルール説明画面
 
-![rule](https://user-images.githubusercontent.com/106970558/212520719-328afd4e-74e0-4d21-8702-ca7bb888ef1e.png)
+![rule](https://user-images.githubusercontent.com/106970558/212536882-2b1b1d11-49f7-4a32-87fc-76f525296d11.png)
 
 このページではブラックジャックのルール説明を書いています．
 
@@ -162,7 +167,7 @@ $ bash ./gradlew bootrun
 
 #### ３．ログイン画面
 
-![login](https://user-images.githubusercontent.com/106970558/212520726-0b5cf1fd-cacf-46c2-9eae-0b0e58f6a392.png)
+![login](https://user-images.githubusercontent.com/106970558/212536878-97695bec-96e3-48fa-845b-4013795db18a.png)
 
 このページは以下の機能があります．
 
@@ -181,8 +186,7 @@ $ bash ./gradlew bootrun
 
 #### ４．ホーム画面
 
-![home-admin](https://user-images.githubusercontent.com/106970558/212520723-194f317b-69dd-4b0a-b731-816b5aef8e33.png)
-
+![home-user](https://user-images.githubusercontent.com/106970558/212536876-b61cd293-76e0-4b12-bbfa-29566227570c.png)
 このページは以下の機能があります．
 
 |  ボタン名  |  機能  |
@@ -198,8 +202,7 @@ $ bash ./gradlew bootrun
 
 #### ５．ロビー画面
 
-![lobby](https://user-images.githubusercontent.com/106970558/212520725-6438365a-4691-4e30-994e-23458b1359b1.png)
-
+![lobby](https://user-images.githubusercontent.com/106970558/212536877-07fbd1d1-adca-49c2-9fdd-b18e9327130c.png)
 このページは以下の機能があります．
 
 |  空欄  |  入力  |
@@ -217,7 +220,7 @@ $ bash ./gradlew bootrun
 
 #### ６．ゲーム画面
 
-![game](https://user-images.githubusercontent.com/106970558/212520722-e1f5ddc4-8344-408e-978d-7d2d45e821a2.png)
+![game](https://user-images.githubusercontent.com/106970558/212536880-75032634-6b20-4176-be0f-1fbfc24bf757.png)
 
 このページは以下の機能があります．
 
@@ -231,7 +234,7 @@ $ bash ./gradlew bootrun
 
 #### ７．結果表示画面
 
-![result](https://user-images.githubusercontent.com/106970558/212520718-295529e6-933e-4b3d-8ff4-eb5251721966.png)
+![result](https://user-images.githubusercontent.com/106970558/212536883-f236a9f0-e46c-4a7e-b172-9e633896032f.png)
 
 このページはでは以下の機能があります．
 
@@ -245,8 +248,7 @@ $ bash ./gradlew bootrun
 
 #### ８．マイニング画面
 
-![mining](https://user-images.githubusercontent.com/106970558/212520727-f424e767-319b-40eb-b8a4-6e63e15a0658.png)
-
+![mining](https://user-images.githubusercontent.com/106970558/212536879-ca3bd086-bf34-4d1e-84a9-dea0d8c4cc4f.png)
 このページは以下の機能があります．
 
 |  ボタン名  |  機能  |
@@ -259,8 +261,7 @@ $ bash ./gradlew bootrun
 
 #### ９．管理者画面
 
-![admin](https://user-images.githubusercontent.com/106970558/212520721-0b304246-7079-4d40-8076-2bd8990a8118.png)
-
+![admin](https://user-images.githubusercontent.com/106970558/212536867-ae8370e2-1cd5-42de-bb9c-9c92900a6aa7.png)
 adminでログインしユーザのみが閲覧できます．
 このページはでは以下の機能があります．
 
