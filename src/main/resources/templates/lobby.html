@@ -14,18 +14,15 @@
         console.log(event.data);
         var room = JSON.parse(event.data);
         var players = room.players;
-        var players_list = "<ul>";
-        // DBに残っているフルーツのリストがJSONオブジェクトとして得られるので，htmlを作成し，tbodyの中身毎入れ替える
+        var players_list = "<ul class='entry-body'>";
         for (var i = 0; i < players.length; i++) {
           var name = "<li>" + players[i].name + "</li>";
           players_list += name;
-
         }
         players_list += "</ul>";
         console.log(players_list);
         var p = document.getElementById("players_list");
-        p.innerHTML = players_list;//idがplayers_listのtbodyのHTMLを差し替える
-
+        p.innerHTML = players_list;
       }
     }
   </script>
@@ -34,16 +31,17 @@
 <body>
   <h1>Blackjack Lobby</h1>
   <h2>You are <span sec:authentication="name"></span>.</h2>
+  <h3 class="entry-head">参加プレイヤー</h3>
   <div th:if="${room}" id="players_list">
-    <ul>
+    <ul class="entry-body">
       <li th:each="player : ${room.players}">[[${player.name}]]</li>
     </ul>
   </div>
   <div>
-    所持コイン数：[[${coin}]] 枚
+    所持コイン数: [[${coin}]] 枚
   </div>
   <form th:action="@{/blackjack/gamestart}" method="post">
-    <input type="number" name="bet" min="1" th:max="${coin}" placeholder="ベット額を入力" required>
+    <input type="number" name="bet" min="1" th:max="${coin}" placeholder="賭け金を入力" required>
     <br>
     <a href="/blackjack/returnhome">退室</a>
     <input type="submit" value="ゲームスタート">

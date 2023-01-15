@@ -20,6 +20,10 @@ input[type="number"]:focus {
   box-shadow: 0 0 8px dodgerblue;
 }
 
+input[type="number"]::placeholder {
+  text-align: center;
+}
+
 input[type="submit"] {
   font-size: 105%;
 }
@@ -50,15 +54,6 @@ a:hover,
 button:hover,
 input[type="submit"]:hover {
   background-position: -100% 0;
-}
-
-ul {
-  text-align: left;
-  display: inline-block;
-}
-
-ul li {
-  font-size: 120%;
 }
 
 #players_list {
@@ -93,13 +88,26 @@ ul li {
   border: 3px solid yellow;
 }
 
+.entry-body {
+  width: 200px;
+}
+
+.entry-body li {
+  list-style: none;
+}
+
+.entry-head,
 .rule-head {
   margin-bottom: 0;
 }
 
 .rule-body {
-  text-align: left;
   width: 800px;
+  text-align: left;
+}
+
+.entry-body,
+.rule-body {
   max-width: 95%;
   display: inline-block;
   background: #007200;
@@ -109,6 +117,7 @@ ul li {
   border-radius: 10px;
 }
 
+.entry-body,
 ol.rule-body {
   list-style-position: inside;
 }
