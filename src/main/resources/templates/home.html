@@ -34,7 +34,7 @@
   </div>
 
   <span id="room_link">
-    <div th:unless="room.enableEntry"><br>入室可能になるまでお待ちください</div>
+    <div th:unless="room.enableEntry">入室可能になるまでお待ちください</div>
     <a th:if="room.enableEntry" href="/blackjack/lobby">入室</a>
   </span>
   <a href="/rule">ルール</a>
