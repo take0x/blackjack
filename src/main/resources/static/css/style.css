@@ -58,6 +58,7 @@ ul li {
 #players_list {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 #players_list p {
