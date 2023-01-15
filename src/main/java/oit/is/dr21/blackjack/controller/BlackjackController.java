@@ -44,7 +44,9 @@ public class BlackjackController {
   UserDataMapper udMapper;
 
   @GetMapping("/home")
-  public String home(ModelMap model) {
+  public String home(Principal prin, ModelMap model) {
+    int coin = udMapper.selectCoinByName(prin.getName());
+    model.addAttribute("coin", coin);
     model.addAttribute("room", this.room);
     return "home.html";
   }
@@ -189,6 +191,8 @@ public class BlackjackController {
   @GetMapping("/returnhome")
   public String returnhome(Principal prin, ModelMap model) {
     this.room.removePlayer(prin.getName());
+    int coin = udMapper.selectCoinByName(prin.getName());
+    model.addAttribute("coin", coin);
     model.addAttribute("room", this.room);
     return "home.html";
   }

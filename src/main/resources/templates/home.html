@@ -28,16 +28,20 @@
 
 <body>
   <h1>Blackjack Home</h1>
-  <h2>Hello! <span sec:authentication="name"></span></h3>
-    <span th:if="room.enableEntry" id="room_link">
-      <a href="/blackjack/lobby">入室</a>
-    </span>
-    <a href="/rule">ルール</a>
-    <a href="/blackjack/miningroom">マイニング</a>
-    <a href="/logout">ログアウト</a>
-    <span sec:authorize="hasRole('ROLE_ADMIN')">
-      <a href="/blackjack/controluser">管理画面</a>
-    </span>
+  <h2>Hello! <span sec:authentication="name"></span></h2>
+  <div th:if="${coin}">
+    所持コイン数：[[${coin}]] 枚
+  </div>
+
+  <span th:if="room.enableEntry" id="room_link">
+    <a href="/blackjack/lobby">入室</a>
+  </span>
+  <a href="/rule">ルール</a>
+  <a href="/blackjack/miningroom">マイニング</a>
+  <a href="/logout">ログアウト</a>
+  <span sec:authorize="hasRole('ROLE_ADMIN')">
+    <a href="/blackjack/controluser">管理画面</a>
+  </span>
 </body>
 
 </html>
