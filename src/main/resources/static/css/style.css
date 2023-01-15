@@ -8,6 +8,13 @@ body {
   background-position: 0 0, 40px 40px;
 }
 
+.icon {
+  width: 80%;
+  max-width: 400px;
+  max-height: 400px;
+  pointer-events: none;
+}
+
 input[type="number"] {
   margin: 10px;
   border-radius: 10px;
