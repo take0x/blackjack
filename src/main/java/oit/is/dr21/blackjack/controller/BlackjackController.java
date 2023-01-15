@@ -191,6 +191,7 @@ public class BlackjackController {
   @GetMapping("/returnhome")
   public String returnhome(Principal prin, ModelMap model) {
     this.room.removePlayer(prin.getName());
+    this.room.judgeLimit();
     int coin = udMapper.selectCoinByName(prin.getName());
     model.addAttribute("coin", coin);
     model.addAttribute("room", this.room);

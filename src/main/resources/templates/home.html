@@ -16,11 +16,11 @@
         var room_link = "";
         if (room[0].enableEntry) {
           room_link += "<a href='/blackjack/lobby'>入室</a>";
+        } else {
+          room_link += "<div><br>入室可能になるまでお待ちください</div>";
         }
-        console.log(room_link);
         var r = document.getElementById("room_link");
         r.innerHTML = room_link;
-
       }
     }
   </script>
@@ -33,8 +33,9 @@
     所持コイン数：[[${coin}]] 枚
   </div>
 
-  <span th:if="room.enableEntry" id="room_link">
-    <a href="/blackjack/lobby">入室</a>
+  <span id="room_link">
+    <div th:unless="${room.enableEntry}"><br>入室可能になるまでお待ちください</div>
+    <a th:if="${room.enableEntry}" href="/blackjack/lobby">入室</a>
   </span>
   <a href="/rule">ルール</a>
   <a href="/blackjack/miningroom">マイニング</a>
