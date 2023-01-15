@@ -88,7 +88,6 @@ public class BlackjackController {
     return "lobby.html";
   }
 
-  ////////////////////////////////////////////////////////////////////////////////
   @GetMapping("/miningroom")
   public String miningroom(Principal prin, ModelMap model) {
     miningMachine = new Mining();
@@ -108,7 +107,6 @@ public class BlackjackController {
     return "miningroom.html";
   }
 
-  ///////////////////////////////////////////////////////////////////////////////////
   @PostMapping("/gamestart")
   @Transactional
   public String gameStart(Principal prin, ModelMap model, @RequestParam int bet) {
