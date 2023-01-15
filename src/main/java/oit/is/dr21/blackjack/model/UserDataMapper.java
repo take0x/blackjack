@@ -21,7 +21,7 @@ public interface UserDataMapper {
   @Update("UPDATE userData SET coin = #{coin} WHERE name = #{name}")
   void updateCoinByName(String name, int coin);
 
-  @Update("UPDATE userData SET coin = 100")
+  @Update("UPDATE userData SET coin = 1000")
   void resetCoinAllUser();
 
 }
